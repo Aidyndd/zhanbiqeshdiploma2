@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Химия өнеркәсібі</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            justify-content: space-between;
+        }
+        .header .logo {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #1e1d3a;
+        }
+        .header nav {
+            display: flex;
+            gap: 30px;
+        }
+        .header nav a {
+            color: #222;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .header nav a:hover {
+            color: #45d0d1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .header .profile span {
+            font-weight: 500;
+        }
+        .nav-link {
+            cursor: pointer;
+        }
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link, .navbar-brand, .dropdown-item {
+            color: #333333 !important;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .nav-pills .nav-link {
+            text-align: left;
+            color: #ffffff !important;   /* белый текст всегда */
+            font-weight: 600;
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: #0b5ed7;   /* подсветка при наведении */
+            color: #ffffff !important;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+            color: #ffffff !important;
+        }
+
+        .nav-pills {
+            background-color: #1e2a38;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        #map {
+            height: 500px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            margin: 5px 0;
+            width: 250px;
+            max-width: 100%;
+        }
+        input[type="text"]:focus {
+            border-color: #66afe9;
+            outline: none;
+        }
+        .is-valid {
+            border-color: #198754 !important;
+            background-color: #d1e7dd !important;
+        }
+        .is-invalid {
+            border-color: #dc3545 !important;
+            background-color: #f8d7da !important;
+        }
+        #result {
+        white-space: pre-line;
+        }
+
+        #factory-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        #factory-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        #factory-info p {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        #factory-info strong {
+            color: #2c3e50;
+        }
+
+        #factory-info img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        #factory-info button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: color 0.3s;
+        }
+
+        #factory-info button:hover {
+            color: #2c3e50;
+        }
+
+        .leaflet-popup-content {
+            max-width: 300px;
+        }
+
+        .leaflet-popup-content h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .leaflet-popup-content p {
+            margin: 5px 0;
+            line-height: 1.4;
+            color: #34495e;
+        }
+
+        .leaflet-popup-content strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="map.html" class="logo" style="text-decoration: none; color: inherit;">GeoMapEd</a>
+        <nav>
+            <a href="index.html">Басты бет</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="course-section-1.html">Курстар</a>
+            <a href="#">Блог</a>
+            <a href="about.html">Біз туралы</a>
+        </nav>
+        <div class="profile">
+            <img src="x.jpg" alt="Профиль">
+            <span>Жанбике</span>
+        </div>
+    </div>
+    <div class="container-fluid mt-4">
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center;">
+                    <h1 style="font-weight: 600;">Химия өнеркәсібі</h3>
+                </div>
+            
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="pill" data-bs-target="#tab1" type="button" role="tab">
+                            Теориялық бөлім
+                        </button>
+                        <button class="nav-link" id="tab2-tab" data-bs-toggle="pill" data-bs-target="#tab2" type="button" role="tab">
+                            Практикалық тапсырмалар
+                        </button>
+                        <button class="nav-link" id="tab3-tab" data-bs-toggle="pill" data-bs-target="#tab3" type="button" role="tab">
+                            Тақырыптық тест
+                        </button>
+                        <button class="nav-link" id="tab4-tab" data-bs-toggle="pill" data-bs-target="#tab4" type="button" role="tab">
+                            Картамен практикалық жұмыс
+                        </button>
+                    </div>
+                </div>
+        
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                            <h3>Тарау 01 : Қазақстанның табиғи-ресурстық әлеуеті</h3>
+                            
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/kseMULP8GNY" title="YouTube video" allowfullscreen></iframe>
+                            </div>
+                    
+                            <h3>Тақырыпқа кіріспе</h3>
+                            <p>Қазақстанда пайдалы қазбалар: фосфорит, күкірт, тұз, әктас және басқа да шикізат өндірісімен айналысатын тау-кен химиясы дамыған. 
+                                Фосфорит кені Жамбыл (Қаратау) және Ақтөбе (Шилісай) облыстарында өнделеді. Күкірт түсті металдар кені құрамында, Көкшетауға жақын 
+                                Алексеев кен орнында кездеседі. Ас тұзы Арал, Балқаш жағалауларында, Шу өзені бойында, Қалқаманда, Тобылжанда, Павлодар облысында бар. 
+                                Калий тұзы Атырау облысындағы Индер көлінде өндіріледі.</p>
+
+                            <p>Химия өнеркәсібінің ерекшелігі — табиғатта кездеспейтін жасанды заттар шығаратындығы және тау-кен химиясы шикізатының негізінде жұмыс 
+                                істейтіндігі. Ақтөбе алабының фосфориті қышқыл топыраққа бірден ендіруге болатындығымен ерекшеленеді (мысалы, республикамыздың солтүстігінде 
+                                қышқыл топырақ басым)</p>
+                                
+                            <p>Химия өнеркәсібінің шикізат көзіне фосфорит, ас және калий тұздары, күкірт колчеданы, көмір, табиғи газ, металлургия газдары, кокс газдары жатады.</p>
+                                
+                            <p>Фосфор тыңайтқыштары өнеркәсібі материал қажеттілігінің төмендігіне байланысты шикізат көздерімен байланыспай, тұтынушыға негізделген. 
+                                Фосфоритті Қаратау мен Жаңатаста өндіріп, тыңайтқыштарды Таразда — Тараз фосфор зауыты мен минералды тыңайтқыштар зауытында шығарады. 
+                                Фосфор тыңайтқыштарын фосфорит пен күкірт қышқылынан алады.</p>
+                                
+                            <p>Азот тыңайтқыштарын өндіретін кәсіпорындар пайдаланылған шикізат түріне байланысты (кокс, кокс газы, табиғи газ) көмір және газ өндіру 
+                                орындарында (Теміртау қ., «ҚазАзот» Ақтау қ.) орналасады. Павлодар «Каустик» зауыты — каустик содасы, хлор және синтетикалық тұз қышқылын 
+                                шығарудан көшбасшы.</p>
+                                
+                            <p>Химия өнеркәсібінің кең қолданылатын өнімінің бірі — күкірт қышқылы. Күкірт қышқылын алу үшін күкірт пен су қажет. Күкірт гипс, күкіртті 
+                                газ және түсті металл кендері құрамында кездеседі. Күкірт қышқылы өнеркәсібі, негізінен, күкірт қышқылын ең көп тұтынатын орындарда орналасады. 
+                            <p>Күкірт қышқылын:</p>
+                            <p>- ауыр жене түсті металдар қорытатын металлургия орталықтарында (Жезказган, Балкаш, Оскемен, Риддер);</p>
+                            <p>- уран ендіру орталыктарында (Степногорск);</p>
+                            <p>- фосфор тынайтқыштары өндірісі орталықтарында (Тараз) өндіреді.</p>
+                                
+                            <p>Арал мен Павлодарда жергілікті шикізат негізінде ас тұзын өндіру кәсіпорындары жұмыс істейді.</p>
+                                
+                            <p>Қазақстандағы химия өнеркәсібінің маңызды саласы — полимерлі материалдар өнеркәсібі. Саланың шикізат базасын иелеспе мұнай және табиғи газ, 
+                                мұнай өңдеудегі көмірсутектер, көмір құрайды.</p>
+                                
+                            <p>Синтетикалық шайыр мен пластмассалар өндірісі ірі шикізат қорына ие аудандарда шоғырланған. Маңғыстау облысының орталығы Ақтауда синтетикалық 
+                                шайыр және пластмасса шығаратын кәсіпорын жұмыс істейді.</p>
+                                
+                            <p>Пластмасса бұйымдарын шығаратын аса ірі зауыттар Атырау (полиэтилен құбырлары), Алматы және Астана қалаларында орналасқан.</p>
+                                
+                            <p>Синтетикалық коксагыз өндірісі табиғи газ бен мұнай, мұнай өңдеу мен көмір өндіру аудандарында орналасады. Мысалы, Теміртау қаласындағы 
+                                Қарағанды синтетикалық коксагыз зауыты.</p>
+                                
+                            <p>Мұнай химиясының болашағы зор. Атырау облысындағы Қарабатан ауылында Теңіз мұнай кен орны аумағында интеграцияланған Аты­рау газ-химия кешені 
+                                құрылысы аяқталып, іске қосылды.</p>
+                                
+                            <p>Елімізде үш мұнай өңдейтін зауыт жұмыс істейді: Атырау, Павлодар және Шымкент қалаларында.</p>
+                                
+                            <p>Фармацевтика өнеркәсібі — химия өнеркәсібінің маңызды салаларының бірі. Қазіргі пайдаланылатын дәрілердің 30%-ы отандық болып саналады. 
+                                Қазақстанда бес ірі фармацевтикалық фабрика жұмыс істейді. Олар: Павлодардағы «Ромат» және Шымкенттегі «Химфарм», Алматыдағы «Нобель» 
+                                фабрикалары, Алматы облысындағы Abdi Ibrahim Global Pharm LLP мен Қарағанды фармацевтикалық зауыты. Бұл кәсіпорындар отандық дәрі-дәрмек­тердің 
+                                90%-ын шығарады. Республикалық фармацевтикалық препараттар мен сабын өндіріс кәсіпорындарының төрттен үш бөлігі Оңтүстік Қазақстан облысына 
+                                («Химфарм» АҚ, «Шымкентмай» АҚ, «Эль-Дос» АҚ) тиесілі.</p>
+                                
+                            <p>Жамбыл облысының қауіпті және аса қауіпті вирустық ауруларға қарсы диагностикалық және профилактикалық препараттар дайындауда, онда 
+                                биологиялық қауіпсіздік мәселелері бойынша ҒЗИ жұмыс істейді. Республикада ең алғаш бiрегей, жергілікті жануарларға иммундау арқылы эпизоотияға 
+                                қарсы қолданатын вакцина жасалды. Қазақстан, Қытай, Ресей, АҚШ, Ұлыбритания, Франция және Вьетнам сияқты елдермен қатар, осы ауруларға қарсы 
+                                әлем бойынша алғашқылардың бірі болып зерттеу және вакцина жасап шығарды. Сонымен катар COVID-19-ға қарсы QazVac (QazCovid-in) отандық вакцина 
+                                шығарылды. Қазақстандық вакцинаның жасалуы біздің елімізді коронавирус инфекциясына қарсы өз вакциналарын әзірлеген әлемнің бес елінің қатарына 
+                                енуіне мүмкіндік берді.</p>
+                                
+                            <p>Химия өнеркәсібі экологиялық лас салалардың бірі. Павлодар, Шымкент, Тараз, Ақтау, Теміртау, Өскемен сияқты қалалардың су, топырақ, ауасының
+                                ластануы тікелей химия өнеркәсібімен байланысты. Көптеген химиялық өндірістер қоршаған ортаны ластаушы болып табылады, оларды орналастыруда 
+                                экологиялық фактар міндетті түрде ескерілуі қажет.</p>
+
+
+                            <div class="text-end mt-4">
+                                <a href="#tab2" class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#tab2">Жалғастыру</a>
+                            </div>
+                            <br><br>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab2" role="tabpanel">
+                            
+                            <h3>Практикалық тапсырмалар</h3>
+
+                            <p><b>1-тапсырма. Өндіріс орнын орналастыруға қолайлы аумақты таңдау.</b> Осы тапсырмада сізге белгілі бір зауыттың немесе кен орнын 
+                                (мәселен, мұнай, газ, пайдалы қазбалар және т.б.) орналастыру үшін ең қолайлы орынды таңдау қажет.</p>
+                            
+                                <form    class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«КазАзот» Акционерлік Қоғамы</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select1">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Алматы облысы</option>
+                                                <option value="Абай">Абай облысы</option>
+                                                <option value="Маңғыстау">Маңғыстау облысы</option>
+                                                <option value="Павлодар">Павлодар облысы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 2 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«ХимПром» Акционерлік Қоғамы</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select2">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Алматы қаласы</option>
+                                                <option value="Абай">Шымкент қаласы</option>
+                                                <option value="Маңғыстау">Орал қаласы</option>
+                                                <option value="Павлодар">Павлодар қаласы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 3 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«Тараз химиялық паркі» Арнайы Экономикалық Аймағы</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select3">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Алматы облысы</option>
+                                                <option value="Абай">Абай облысы</option>
+                                                <option value="Маңғыстау">Жамбыл облысы</option>
+                                                <option value="Павлодар">Павлодар облысы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 4 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«Қазфосфат» ЖШС</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select4">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Ақмола облысы</option>
+                                                <option value="Абай">ШҚО</option>
+                                                <option value="Маңғыстау">Маңғыстау облысы</option>
+                                                <option value="Павлодар">Жамбыл облысы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 5 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«Kazakhstan Petrochemical Industries Inc.»</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select5">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Атырау облысы</option>
+                                                <option value="Абай">Қостанай облысы</option>
+                                                <option value="Маңғыстау">Қызылорда облысы</option>
+                                                <option value="Павлодар">Ақтөбе облысы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 6 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«ТНК Казхром» – Хром қосындылары зауыты</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select6">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Қарағанды облысы</option>
+                                                <option value="Абай">Түркістан облысы</option>
+                                                <option value="Маңғыстау">Қостанай облысы</option>
+                                                <option value="Павлодар">Ақтөбе облысы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 7 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«Реагент» ЖШС</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select7">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">ШҚО</option>
+                                                <option value="Абай">Қарағанды облысы</option>
+                                                <option value="Маңғыстау">СҚО</option>
+                                                <option value="Павлодар">Ұлытау облысы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 8 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«Алмалы» ЖШС</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select8">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Ақмола облысы</option>
+                                                <option value="Абай">ШҚО</option>
+                                                <option value="Маңғыстау">Маңғыстау облысы</option>
+                                                <option value="Павлодар">Жамбыл облысы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- 9 -->
+                                <form class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 mt-1">
+                                            <p>«ИнтерХим» ЖШС</p>
+                                        </div>
+                                        <div class="col-md-1"><p>→</p></div>
+                                        <div class="col-md-5">
+                                            <select class="form-select" id="select9">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Астана қаласы</option>
+                                                <option value="Абай">Алматы қаласы</option>
+                                                <option value="Маңғыстау">Ақтау қаласы</option>
+                                                <option value="Павлодар">Тараз қаласы</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                                <!-- Кнопка -->
+                                <div class="mt-4 text-center">
+                                    <button type="button" class="btn btn-primary" onclick="checkAnswers()">Тексеру</button>
+                                    <p id="result" class="mt-3 fw-bold"></p>
+                                </div>
+                            
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                        const correctAnswers = {
+                                            select1: "Маңғыстау", // «КазАзот»
+                                            select2: "Павлодар",  // «ХимПром»
+                                            select3: "Маңғыстау", // «Тараз химиялық паркі»
+                                            select4: "Павлодар",  // «Қазфосфат»
+                                            select5: "Алматы",    // «Kazakhstan Petrochemical Industries Inc.»
+                                            select6: "Павлодар",  // «ТНК Казхром»
+                                            select7: "Абай",      // «Реагент»
+                                            select8: "Павлодар",  // «Алмалы»
+                                            select9: "Абай"       // «ИнтерХим»
+                                        };
+                                
+                                        window.checkAnswers = function () {
+                                            let correct = 0;
+                                            let total = Object.keys(correctAnswers).length;
+                                
+                                            for (let key in correctAnswers) {
+                                                const selectElement = document.getElementById(key);
+                                                if (selectElement) {
+                                                    selectElement.classList.remove("is-valid", "is-invalid");
+                                
+                                                    if (selectElement.value === correctAnswers[key]) {
+                                                        selectElement.classList.add("is-valid");
+                                                        correct++;
+                                                    } else {
+                                                        selectElement.classList.add("is-invalid");
+                                                    }
+                                                }
+                                            }
+                                
+                                            const resultElement = document.getElementById("result");
+                                
+                                            if (resultElement) {
+                                                resultElement.innerText = `Дұрыс жауаптар саны: ${correct} / ${total}`;
+                                
+                                                if (correct === total) {
+                                                    resultElement.innerText += "\n✅ Барлық жауап дұрыс!";
+                                                    resultElement.style.color = "green";
+                                                } else {
+                                                    resultElement.innerText += "\n⚠️ Кейбір жауаптар қате, дұрыстаңыз.";
+                                                    resultElement.style.color = "red";
+                                                }
+                                            } else {
+                                                alert(`Дұрыс жауаптар саны: ${correct} / ${total}`);
+                                            }
+                                        };
+                                    });
+                                </script>
+                                
+                                
+
+                                <p><b>2-тапсырма.</b> Химия өнеркәсібінің салаларын физикалық-географиялық картадан тауып, сәйкес қалалар мен өңірлерді белгіле. Бұл тапсырма географиялық орынды өнеркәсіп түрімен байланыстырып, картада бағдарлау дағдыларын дамытуға бағытталған.</p>
+
+                                <p>Картада Қазақстандағы ірі табиғи ресурстар орналасқан қалаларды белгілеңіз (мысалы: Қарағанды, Жезқазған, Ақтау, т.б.).</p>
+
+                                <div id="map" style="height: 500px; width: 100%; margin-bottom: 20px;"></div>
+
+                                <div id="message" style="margin-top: 10px; font-weight: bold; font-size: 20px; padding: 15px; text-align: center; border-radius: 10px; transition: all 0.3s;">
+                                </div>
+
+                                <div class="table-responsive mt-4">
+                                    <table class="table table-bordered">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Өнеркәсіп саласы</th>
+                                                <th>Кәсіпорындар</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Фосфор тыңайтқыштары өнеркәсібі</td>
+                                                <td>
+                                                    <input type="text" class="form-control mb-2" placeholder="1" readonly>
+                                                    <input type="text" class="form-control" placeholder="2" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Азот тыңайтқыштары өнеркәсібі</td>
+                                                <td>
+                                                    <input type="text" class="form-control mb-2" placeholder="1" readonly>
+                                                    <input type="text" class="form-control" placeholder="2" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Сода және тұз өнеркәсібі</td>
+                                                <td>
+                                                    <input type="text" class="form-control mb-2" placeholder="1" readonly>
+                                                    <input type="text" class="form-control mb-2" placeholder="2" readonly>
+                                                    <input type="text" class="form-control" placeholder="3" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Күкірт қышқылы өндірісі</td>
+                                                <td>
+                                                    <input type="text" class="form-control mb-2" placeholder="1" readonly>
+                                                    <input type="text" class="form-control" placeholder="2" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Полимерлер және пластмасса өнеркәсібі</td>
+                                                <td>
+                                                    <input type="text" class="form-control mb-2" placeholder="1" readonly>
+                                                    <input type="text" class="form-control mb-2" placeholder="2" readonly>
+                                                    <input type="text" class="form-control" placeholder="3" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Синтетикалық коксагыз өнеркәсібі</td>
+                                                <td>
+                                                    <input type="text" class="form-control" placeholder="1" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Мұнай химиясы</td>
+                                                <td>
+                                                    <input type="text" class="form-control mb-2" placeholder="1" readonly>
+                                                    <input type="text" class="form-control" placeholder="2" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Фармацевтика өнеркәсібі</td>
+                                                <td>
+                                                    <input type="text" class="form-control mb-2" placeholder="1" readonly>
+                                                    <input type="text" class="form-control mb-2" placeholder="2" readonly>
+                                                    <input type="text" class="form-control mb-2" placeholder="3" readonly>
+                                                    <input type="text" class="form-control mb-2" placeholder="4" readonly>
+                                                    <input type="text" class="form-control mb-2" placeholder="5" readonly>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+                                <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+                                <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    const map = L.map('map').setView([48.0, 67.0], 5);
+
+                                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                        attribution: '&copy; OpenStreetMap contributors'
+                                    }).addTo(map);
+
+                                    const markers = {};
+                                    let incorrectMarker = null;
+                                    const correctLocations = [
+                                        { name: 'Қарағанды', lat: 49.8041, lng: 73.0977 },
+                                        { name: 'Жезқазған', lat: 47.7833, lng: 67.6667 },
+                                        { name: 'Ақтау', lat: 43.6525, lng: 51.1971 },
+                                        { name: 'Тараз', lat: 42.8983, lng: 71.3659 },
+                                        { name: 'Ақтөбе', lat: 50.2833, lng: 57.1667 },
+                                        { name: 'Павлодар', lat: 52.2897, lng: 76.9407 },
+                                        { name: 'Арал көлі', lat: 45.0000, lng: 60.0000 },
+                                        { name: 'Балқаш көлі', lat: 46.5333, lng: 74.8833 },
+                                        { name: 'Көкшетау', lat: 53.2833, lng: 69.3833 },
+                                        { name: 'Атырау', lat: 47.1167, lng: 51.8833 },
+                                        { name: 'Астана', lat: 51.1694, lng: 71.4491 },
+                                        { name: 'Шымкент', lat: 42.3000, lng: 69.6000 },
+                                        { name: 'Алматы', lat: 43.2220, lng: 76.8512 }
+                                    ];
+
+                                    function isCorrectLocation(lat, lng) {
+                                        return correctLocations.some(location => 
+                                            Math.abs(location.lat - lat) < ((location.name == "Арал көлі" || location.name == "Балқаш көлі") ? 2 : 0.7) && Math.abs(location.lng - lng) < ((location.name == "Арал көлі" || location.name == "Балқаш көлі") ? 2 : 0.7)
+                                        );
+                                    }
+
+                                    function getLocationName(lat, lng) {
+                                        const location = correctLocations.find(loc => 
+                                            Math.abs(loc.lat - lat) < ((loc.name == "Арал көлі" || loc.name == "Балқаш көлі") ? 2 : 0.7) && Math.abs(loc.lng - lng) < ((loc.name == "Арал көлі" || loc.name == "Балқаш көлі") ? 2 : 0.7)
+                                        );
+                                        return location ? location.name : null;
+                                    }
+
+                                    // Create custom icons
+                                    const greenIcon = L.icon({
+                                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                                        iconSize: [25, 41],
+                                        iconAnchor: [12, 41],
+                                        popupAnchor: [1, -34],
+                                        shadowSize: [41, 41]
+                                    });
+
+                                    const redIcon = L.icon({
+                                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                                        iconSize: [25, 41],
+                                        iconAnchor: [12, 41],
+                                        popupAnchor: [1, -34],
+                                        shadowSize: [41, 41]
+                                    });
+
+                                    map.on('click', function(e) {
+                                        const messageElement = document.getElementById('message');
+                                        const locationName = getLocationName(e.latlng.lat, e.latlng.lng);
+                                        
+                                        if (locationName) {
+                                            // If a marker already exists for this location, remove it
+                                            if (markers[locationName]) {
+                                                map.removeLayer(markers[locationName]);
+                                            }
+                                            // Add new marker
+                                            const marker = L.marker(e.latlng, {icon: greenIcon}).addTo(map);
+                                            markers[locationName] = marker;
+
+                                            if (locationName === 'Тараз') {
+                                                const firstInput = document.querySelector('input[placeholder="1"]');
+                                                firstInput.value = 'Жамбыл облысы (Тараз)';
+                                                firstInput.classList.add('is-valid');
+                                            } else if (locationName === 'Ақтөбе') {
+                                                const secondInput = document.querySelector('input[placeholder="2"]');
+                                                secondInput.value = 'Ақтөбе облысы (Шилісай)';
+                                                secondInput.classList.add('is-valid');
+                                            } else if (locationName === 'Ақтау') {
+                                                // Fill first cell of second section (Азот тыңайтқыштары өнеркәсібі)
+                                                const secondSectionFirstInput = document.querySelectorAll('tbody tr')[1].querySelector('input[placeholder="1"]');
+                                                secondSectionFirstInput.value = 'Маңғыстау облысы';
+                                                secondSectionFirstInput.classList.add('is-valid');
+                                                // Fill first cell of fifth section (Полимерлер және пластмасса өнеркәсібі)
+                                                const fifthSectionFirstInput = document.querySelectorAll('tbody tr')[4].querySelector('input[placeholder="1"]');
+                                                fifthSectionFirstInput.value = 'Маңғыстау облысы';
+                                                fifthSectionFirstInput.classList.add('is-valid');
+                                            } else if (locationName === 'Қарағанды') {
+                                                // Fill second cell of second section (Азот тыңайтқыштары өнеркәсібі)
+                                                const secondSectionSecondInput = document.querySelectorAll('tbody tr')[1].querySelector('input[placeholder="2"]');
+                                                secondSectionSecondInput.value = 'Қарағанды облысы';
+                                                secondSectionSecondInput.classList.add('is-valid');
+                                                // Fill second cell of fourth section (Күкірт қышқылы өндірісі)
+                                                const fourthSectionSecondInput = document.querySelectorAll('tbody tr')[3].querySelector('input[placeholder="2"]');
+                                                fourthSectionSecondInput.value = 'Қарағанды облысы';
+                                                fourthSectionSecondInput.classList.add('is-valid');
+                                                // Fill first cell of sixth section (Синтетикалық коксагыз өнеркәсібі)
+                                                const sixthSectionFirstInput = document.querySelectorAll('tbody tr')[5].querySelector('input[placeholder="1"]');
+                                                sixthSectionFirstInput.value = 'Қарағанды облысы';
+                                                sixthSectionFirstInput.classList.add('is-valid');
+                                                // Fill fifth cell of eighth section (Фармацевтика өнеркәсібі)
+                                                const eighthSectionFifthInput = document.querySelectorAll('tbody tr')[7].querySelectorAll('input')[4];
+                                                eighthSectionFifthInput.value = 'Қарағанды облысы';
+                                                eighthSectionFifthInput.classList.add('is-valid');
+                                            } else if (locationName === 'Павлодар') {
+                                                // Fill first cell of third section (Сода және тұз өнеркәсібі)
+                                                const thirdSectionFirstInput = document.querySelectorAll('tbody tr')[2].querySelector('input[placeholder="1"]');
+                                                thirdSectionFirstInput.value = 'Павлодар облысы';
+                                                thirdSectionFirstInput.classList.add('is-valid');
+                                                // Fill second cell of seventh section (Мұнай химиясы)
+                                                const seventhSectionSecondInput = document.querySelectorAll('tbody tr')[6].querySelector('input[placeholder="2"]');
+                                                seventhSectionSecondInput.value = 'Павлодар облысы';
+                                                seventhSectionSecondInput.classList.add('is-valid');
+                                                // Fill first cell of eighth section (Фармацевтика өнеркәсібі)
+                                                const eighthSectionFirstInput = document.querySelectorAll('tbody tr')[7].querySelector('input[placeholder="1"]');
+                                                eighthSectionFirstInput.value = 'Павлодар облысы';
+                                                eighthSectionFirstInput.classList.add('is-valid');
+                                            } else if (locationName === 'Арал көлі') {
+                                                // Fill second cell of third section (Сода және тұз өнеркәсібі)
+                                                const thirdSectionSecondInput = document.querySelectorAll('tbody tr')[2].querySelector('input[placeholder="2"]');
+                                                thirdSectionSecondInput.value = 'Арал көлі';
+                                                thirdSectionSecondInput.classList.add('is-valid');
+                                            } else if (locationName === 'Балқаш көлі') {
+                                                // Fill third cell of third section (Сода және тұз өнеркәсібі)
+                                                const thirdSectionThirdInput = document.querySelectorAll('tbody tr')[2].querySelector('input[placeholder="3"]');
+                                                thirdSectionThirdInput.value = 'Балқаш көлі';
+                                                thirdSectionThirdInput.classList.add('is-valid');
+                                            } else if (locationName === 'Көкшетау') {
+                                                // Fill first cell of fourth section (Күкірт қышқылы өндірісі)
+                                                const fourthSectionFirstInput = document.querySelectorAll('tbody tr')[3].querySelector('input[placeholder="1"]');
+                                                fourthSectionFirstInput.value = 'Көкшетау маңы';
+                                                fourthSectionFirstInput.classList.add('is-valid');
+                                            } else if (locationName === 'Атырау') {
+                                                // Fill second cell of fifth section (Полимерлер және пластмасса өнеркәсібі)
+                                                const fifthSectionSecondInput = document.querySelectorAll('tbody tr')[4].querySelector('input[placeholder="2"]');
+                                                fifthSectionSecondInput.value = 'Атырау облысы';
+                                                fifthSectionSecondInput.classList.add('is-valid');
+                                                // Fill first cell of seventh section (Мұнай химиясы)
+                                                const seventhSectionFirstInput = document.querySelectorAll('tbody tr')[6].querySelector('input[placeholder="1"]');
+                                                seventhSectionFirstInput.value = 'Атырау облысы';
+                                                seventhSectionFirstInput.classList.add('is-valid');
+                                            } else if (locationName === 'Астана') {
+                                                // Fill third cell of fifth section (Полимерлер және пластмасса өнеркәсібі)
+                                                const fifthSectionThirdInput = document.querySelectorAll('tbody tr')[4].querySelector('input[placeholder="3"]');
+                                                fifthSectionThirdInput.value = 'Астана';
+                                                fifthSectionThirdInput.classList.add('is-valid');
+                                            } else if (locationName === 'Шымкент') {
+                                                // Fill second cell of eighth section (Фармацевтика өнеркәсібі)
+                                                const eighthSectionSecondInput = document.querySelectorAll('tbody tr')[7].querySelector('input[placeholder="2"]');
+                                                eighthSectionSecondInput.value = 'Шымкент';
+                                                eighthSectionSecondInput.classList.add('is-valid');
+                                            } else if (locationName === 'Алматы') {
+                                                // Fill third cell of eighth section (Фармацевтика өнеркәсібі)
+                                                const eighthSectionThirdInput = document.querySelectorAll('tbody tr')[7].querySelector('input[placeholder="3"]');
+                                                eighthSectionThirdInput.value = 'Алматы';
+                                                eighthSectionThirdInput.classList.add('is-valid');
+                                                // Fill fourth cell of eighth section (Фармацевтика өнеркәсібі)
+                                                const eighthSectionFourthInput = document.querySelectorAll('tbody tr')[7].querySelector('input[placeholder="4"]');
+                                                eighthSectionFourthInput.value = 'Алматы облысы';
+                                                eighthSectionFourthInput.classList.add('is-valid');
+                                            }
+                                            messageElement.innerHTML = "Дұрыс орын белгіленді!";
+                                            messageElement.style.color = "white";
+                                            messageElement.style.backgroundColor = "green";
+                                        } else {
+                                            // Remove previous incorrect marker if it exists
+                                            if (incorrectMarker) {
+                                                map.removeLayer(incorrectMarker);
+                                            }
+                                            // Add new incorrect marker
+                                            incorrectMarker = L.marker(e.latlng, {icon: redIcon}).addTo(map);
+                                            messageElement.innerHTML = "Бұл орын дұрыс емес. Қайта тексеріңіз.";
+                                            messageElement.style.color = "white";
+                                            messageElement.style.backgroundColor = "red";
+                                        }
+                                    });
+                                });
+                                </script>
+
+
+
+
+                            <div id="task3-container">
+                                <p><b>3-тапсырма. Төмендегі мәтінді оқып, бос орындарға тиісті сөздерді қойыңыз.</b></p>
+                                
+                                <p>1. Қазақстанда химия өнеркәсібі елдің <input type="text" placeholder="Жыл"> жылға дейінгі индустриялық-инновациялық даму бағдарламасына енді.</p>
+                                
+                                <p>2. Бұл мемлекет тарапынан <input type="text" placeholder="Қолдау түрі"> және <input type="text" placeholder="Қолдау түрі"> қолдауға ие болды.</p>
+                                
+                                <p>3. Химия өнеркәсібінің негізгі бағыттары: <input type="text" placeholder="Өнім түрі">, <input type="text" placeholder="Өнім түрі"> және <input type="text" placeholder="Өнім түрі"> өндірісі.</p>
+                                
+                                <p>4. Қазақстанда химия өнеркәсібі <input type="text" placeholder="Сала"> және <input type="text" placeholder="Сала"> салаларымен тығыз байланысты.</p>
+                                
+                                <p>5. Елдегі химия өнеркәсібінің дамуына <input type="text" placeholder="Фактор"> және <input type="text" placeholder="Фактор"> факторлары әсер етеді.</p>
+                                
+                                <p>6. Химия өнеркәсібі өнімдері <input type="text" placeholder="Сала"> және <input type="text" placeholder="Сала"> салаларында кеңінен қолданылады.</p>
+                                
+                                <p>7. Қазақстанда химия өнеркәсібі өнімдерінің <input type="text" placeholder="Пайыз"> пайызы экспортқа шығарылады.</p>
+                                
+                                <p>8. Химия өнеркәсібінің дамуы <input type="text" placeholder="Сала"> өнімділігінің артуына және <input type="text" placeholder="Сипаттама"> әлеуеттің ұлғаюына ықпал етеді.</p>
+                                
+                                <p>9. Мемлекет химия өнеркәсібін дамыту үшін салық жеңілдіктері және <input type="text" placeholder="Шара"> шараларын қабылдады.</p>
+                                
+                                <p>10. Химия өнеркәсібі Қазақстан экономикасының <input type="text" placeholder="Сипаттама"> және <input type="text" placeholder="Сипаттама"> салаларында маңызды рөл атқарады.</p>
+                                
+                                <button class="btn btn-primary" onclick="checkAnswers2()">Тексеру</button>
+                                
+                                <p id="result-message2" style="font-weight: bold;"></p>
+                            </div>
+                            
+                            <script>
+                            function checkAnswers2() {
+                                const correctAnswers = [
+                                    "2020",
+                                    "инфрақұрылымдық", "қаржылық",
+                                    "минералды тыңайтқыштар", "полимерлер", "реактивтер",
+                                    "ауыл шаруашылығы", "металлургия",
+                                    "шикізат базасының молдығы", "көлік логистикасы",
+                                    "машина жасау", "құрылыс",
+                                    "35-40",
+                                    "ауыл шаруашылығы", "экспорттық",
+                                    "инвестициялық бағдарламалар",
+                                    "индустриялық", "инновациялық"
+                                ];
+                                
+                                const taskContainer = document.getElementById('task3-container');
+                                const inputs = taskContainer.querySelectorAll('input[type="text"]');
+                                const resultMessage = document.getElementById("result-message2");
+                                let allCorrect = true;
+                                let currentAnswerIndex = 0;
+                                
+                                inputs.forEach((input) => {
+                                    const userAnswer = input.value.trim().toLowerCase();
+                                    const correctAnswer = correctAnswers[currentAnswerIndex].toLowerCase();
+                                    
+                                    if (userAnswer === correctAnswer) {
+                                        input.style.borderColor = "green";
+                                        input.style.backgroundColor = "#e6ffe6"; // light green background
+                                    } else {
+                                        input.style.borderColor = "red";
+                                        input.style.backgroundColor = "#ffe6e6"; // light red background
+                                        allCorrect = false;
+                                    }
+                                    
+                                    currentAnswerIndex++;
+                                });
+                                
+                                if (allCorrect) {
+                                    resultMessage.textContent = "Жарайсың! Барлық жауап дұрыс.";
+                                    resultMessage.style.color = "green";
+                                } else {
+                                    resultMessage.textContent = "Кейбір жауаптар қате. Қайта қарап көріңіз.";
+                                    resultMessage.style.color = "red";
+                                }
+                            }
+                            </script>
+    
+                            <br><br>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="tab3" role="tabpanel">
+                        
+                        
+                            <h3>Тақырыптық тест</h3>
+                        
+                            <form id="quiz-form">
+                                <ol>
+                                    <li>Химия өнеркәсібі дегеніміз не?
+                                        <ul>
+                                            <li><input type="radio" name="q1" value="A"> A) Ауыл шаруашылығының бір саласы</li>
+                                            <li><input type="radio" name="q1" value="B"> B) Дәрі-дәрмек өндіру орны</li>
+                                            <li><input type="radio" name="q1" value="C"> C) Химиялық заттар мен материалдар өндіретін сала</li>
+                                            <li><input type="radio" name="q1" value="D"> D) Тек қана зертханалық тәжірибе жасау</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Химия өнеркәсібінде қандай өнімдер шығарылады?
+                                        <ul>
+                                            <li><input type="radio" name="q2" value="A"> A) Мұнай мен көмір</li>
+                                            <li><input type="radio" name="q2" value="B"> B) Тыңайтқыштар, пластмасса, бояу</li>
+                                            <li><input type="radio" name="q2" value="C"> C) Жеміс-жидек</li>
+                                            <li><input type="radio" name="q2" value="D"> D) Металл бөлшектері</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Химия өнеркәсібінің негізгі шикізаты:
+                                        <ul>
+                                            <li><input type="radio" name="q3" value="A"> A) Су</li>
+                                            <li><input type="radio" name="q3" value="B"> B) Мұнай, газ, фосфорит</li>
+                                            <li><input type="radio" name="q3" value="C"> C) Ағаш</li>
+                                            <li><input type="radio" name="q3" value="D"> D) Құм мен тас</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Минерал тыңайтқыштар қай салада қолданылады?
+                                        <ul>
+                                            <li><input type="radio" name="q4" value="A"> A) Жеңіл өнеркәсіп</li>
+                                            <li><input type="radio" name="q4" value="B"> B) Құрылыс</li>
+                                            <li><input type="radio" name="q4" value="C"> C) Ауыл шаруашылығы</li>
+                                            <li><input type="radio" name="q4" value="D"> D) Байланыс</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Химия өнеркәсібі қандай өнеркәсіп түріне жатады?
+                                        <ul>
+                                            <li><input type="radio" name="q5" value="A"> A) Өңдеу өнеркәсібі</li>
+                                            <li><input type="radio" name="q5" value="B"> B) Тау-кен өнеркәсібі</li>
+                                            <li><input type="radio" name="q5" value="C"> C) Электр энергетикасы</li>
+                                            <li><input type="radio" name="q5" value="D"> D) Ағаш өңдеу өнеркәсібі</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Химия өнеркәсібінде алынған полимерлер қайда қолданылады?
+                                        <ul>
+                                            <li><input type="radio" name="q6" value="A"> A) Тамақ өнеркәсібінде</li>
+                                            <li><input type="radio" name="q6" value="B"> B) Медицина, тұрмыс заттары, құрылыс саласында</li>
+                                            <li><input type="radio" name="q6" value="C"> C) Ғарыш саласында ғана</li>
+                                            <li><input type="radio" name="q6" value="D"> D) Тек қана ауыл шаруашылығында</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Қышқылдар мен сілтілер қандай өндірісте пайдаланылады?
+                                        <ul>
+                                            <li><input type="radio" name="q7" value="A"> A) Азық-түлік</li>
+                                            <li><input type="radio" name="q7" value="B"> B) Тұрмыстық техника</li>
+                                            <li><input type="radio" name="q7" value="C"> C) Металл өңдеу және тазарту</li>
+                                            <li><input type="radio" name="q7" value="D"> D) Медицинада ғана</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Химия өнеркәсібінің қоршаған ортаға әсері:
+                                        <ul>
+                                            <li><input type="radio" name="q8" value="A"> A) Мүлде әсер етпейді</li>
+                                            <li><input type="radio" name="q8" value="B"> B) Тек пайдалы әсері бар</li>
+                                            <li><input type="radio" name="q8" value="C"> C) Қалдықтар арқылы ластайды</li>
+                                            <li><input type="radio" name="q8" value="D"> D) Тек су көздерін жақсартады</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Химия өнеркәсібі экономика үшін неге маңызды?
+                                        <ul>
+                                            <li><input type="radio" name="q9" value="A"> A) Өнімділікті азайтады</li>
+                                            <li><input type="radio" name="q9" value="B"> B) Халық санына әсер етеді</li>
+                                            <li><input type="radio" name="q9" value="C"> C) Әртүрлі салаға қажетті өнімдермен қамтамасыз етеді</li>
+                                            <li><input type="radio" name="q9" value="D"> D) Суға тәуелділікті арттырады</li>
+                                        </ul>
+                                    </li>
+                                    <hr>
+                                    <li>Химия өнеркәсібіндегі қауіпсіздік ережелері не үшін қажет?
+                                        <ul>
+                                            <li><input type="radio" name="q10" value="A"> A) Жұмыс уақытын қысқарту үшін</li>
+                                            <li><input type="radio" name="q10" value="B"> B) Қызметкерлерді қорғау және апаттардың алдын алу үшін</li>
+                                            <li><input type="radio" name="q10" value="C"> C) Жалақыны көбейту үшін</li>
+                                            <li><input type="radio" name="q10" value="D"> D) Құжаттарды дұрыс рәсімдеу үшін</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+
+                                <div class="mt-4 text-center">
+                                    <div id="warning" class="alert alert-warning d-none"></div>
+                                    <div id="result" class="alert alert-success d-none"></div>
+                                    <div id="score-count" class="mt-2 fw-bold text-success d-none"></div>
+                                
+                                    <button type="button" id="check-btn" class="btn btn-primary">Тексеру</button>
+                                </div>
+                                <br><br><br>
+                            </form>
+
+                        
+                        </div>
+
+                        <script>
+                            document.getElementById("check-btn").addEventListener("click", function () {
+                                const correctAnswers = {
+                                    q1: "C",
+                                    q2: "B",
+                                    q3: "B",
+                                    q4: "C",
+                                    q5: "A",
+                                    q6: "B",
+                                    q7: "C",
+                                    q8: "C",
+                                    q9: "C",
+                                    q10: "B"
+                                };
+                        
+                                const warningDiv = document.getElementById("warning");
+                                const resultDiv = document.getElementById("result");
+                                const scoreCount = document.getElementById("score-count");
+                        
+                                // Сброс предыдущего состояния
+                                warningDiv.classList.add("d-none");
+                                resultDiv.classList.add("d-none");
+                                scoreCount.classList.add("d-none");
+                        
+                                document.querySelectorAll("form input[type=radio]").forEach(input => {
+                                    input.parentElement.style.backgroundColor = "";
+                                });
+                        
+                                let score = 0;
+                                let total = Object.keys(correctAnswers).length;
+                                let unanswered = [];
+                        
+                                // Проверка на незаполненные вопросы
+                                for (let key in correctAnswers) {
+                                    let selected = document.querySelector(`input[name="${key}"]:checked`);
+                                    if (!selected) {
+                                        unanswered.push(key);
+                                    }
+                                }
+                        
+                                if (unanswered.length > 0) {
+                                    warningDiv.textContent = `Барлық сұрақтарға жауап беріңіз! (${unanswered.length} сұрақ белгіленбеген)`;
+                                    warningDiv.classList.remove("d-none");
+                                    return;
+                                }
+                        
+                                // Подсчёт правильных ответов
+                                for (let key in correctAnswers) {
+                                    let selected = document.querySelector(`input[name="${key}"]:checked`);
+                                    if (selected.value === correctAnswers[key]) {
+                                        score++;
+                                        selected.parentElement.style.backgroundColor = "#d4edda"; // зелёный
+                                    } else {
+                                        selected.parentElement.style.backgroundColor = "#f8d7da"; // красный
+                                        let correctInput = document.querySelector(`input[name="${key}"][value="${correctAnswers[key]}"]`);
+                                        if (correctInput) {
+                                            correctInput.parentElement.style.backgroundColor = "#d1ecf1"; // голубой
+                                        }
+                                    }
+                                }
+                        
+                                // Отображение результатов
+                                scoreCount.textContent = `Дұрыс жауаптар саны: ${score}`;
+                                scoreCount.classList.remove("d-none");
+                        
+                                resultDiv.textContent = `Нәтиже: ${score} / ${total} дұрыс жауап бердіңіз.`;
+                                resultDiv.classList.remove("d-none");
+                            });
+                        </script>
+                        
+                        <div class="tab-pane fade" id="tab4" role="tabpanel">
+                            <h3>Картамен практикалық жұмыс</h3>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div id="sidebar" style="width: 23%; height: 600px; float: left; overflow-y: auto; border-right: 2px solid #ccc; background-color: #f9f9f9; padding: 10px;">
+                                        <h2>Кәсіпорындар</h2>
+                                        <div class="category" data-group="inorganicChemistry">Бейорганикалық химия және негізгі химикаттар</div>
+                                        <ul class="factory-list" data-group="inorganicChemistry">
+                                            <li data-group="inorganicChemistry" data-index="0">«Ақтөбе хром қосындылары зауыты» АҚ (АХҚЗ)</li>
+                                            <li data-group="inorganicChemistry" data-index="1">«Каустик» АҚ (Павлодар)</li>
+                                            <li data-group="inorganicChemistry" data-index="2">«СКЗ-U» ЖШС (Қызылорда қаласы)</li>
+                                            <li data-group="inorganicChemistry" data-index="3">«СП СКЗ Казатомпром» ЖШС Қызылорда облысы</li>
+                                            <li data-group="inorganicChemistry" data-index="4">«Тау-Кен Temir» ЖШС (SILICIUM KAZAKHSTAN) Қарағанды қаласы</li>
+                                            <li data-group="inorganicChemistry" data-index="5">«Жезқазғанредмет» РМК Ұлытау облысы, Жезқазған қаласы</li>
+                                            <li data-group="inorganicChemistry" data-index="6">«Реагент-Восток» ЖШС (Павлодар)</li>
+                                            </ul>
+
+                                        <div class="category" data-group="agriculturalChemistry">Ауыл шаруашылық химиясы және минералды тыңайтқыштар</div>
+                                        <ul class="factory-list" data-group="agriculturalChemistry">
+                                            <li data-group="agriculturalChemistry" data-index="0">«Казфосфат» ЖШС Жамбыл облысы</li>
+                                            <li data-group="agriculturalChemistry" data-index="1">«КазАзот» АҚ Маңғыстау облысы, Ақтау қаласы</li>
+                                            <li data-group="agriculturalChemistry" data-index="2">«Кайнар» ЖШС Жамбыл облысы</li>
+                                            <li data-group="agriculturalChemistry" data-index="3">«КосАгроКоммерц» ЖШС Қарағанды облысы</li>
+                                            <li data-group="agriculturalChemistry" data-index="4">«Talas Investment Company» ЖШС Жамбыл облысы</li>
+                                            <li data-group="agriculturalChemistry" data-index="5">«ХАЗРАТ-АЛИ-АКБАР» ЖШС Алматы қаласы</li>
+                                            </ul>
+
+                                        <div class="category" data-group="industrialChemistry">Өнеркәсіптік және құрылыс химиясы</div>
+                                        <ul class="factory-list" data-group="industrialChemistry">
+                                            <li data-group="industrialChemistry" data-index="0">«Eurotech Industries Ltd» ЖШС</li>
+                                            <li data-group="industrialChemistry" data-index="1">«Рауан Налко» ЖШС Атырау</li>
+                                            <li data-group="industrialChemistry" data-index="2">«ДосМунайХим» ЖШС Атырау қаласы</li>
+                                            <li data-group="industrialChemistry" data-index="3">«ОргСинтез Казахстан» ЖШС Қарағанды қаласы</li>
+                                            </ul>
+
+                                        <div class="category" data-group="explosives">Жарылғыш заттар және арнайы химия</div>
+                                        <ul class="factory-list" data-group="explosives">
+                                            <li data-group="explosives" data-index="0">«Каз ЦКУБ «Нитрохим» ЖШС Ақтөбе облысы</li>
+                                            <li data-group="explosives" data-index="1">«Орика-Казахстан» АҚ Усть-Каменогорск</li>
+                                        </ul>
+
+                                        <div class="category" data-group="householdChemistry">Тұрмыстық химия және жуу құралдары</div>
+                                        <ul class="factory-list" data-group="householdChemistry">
+                                            <li data-group="householdChemistry" data-index="0">«Компания ЭКОХИМ» ЖШС Ақтөбе облысы</li>
+                                            </ul>
+
+                                        <div class="category" data-group="polymers">Полимерлер және резеңке-техникалық бұйымдар</div>
+                                        <ul class="factory-list" data-group="polymers">
+                                            <li data-group="polymers" data-index="0">Қарағанды резеңке-техникалық бұйымдар зауыты Қарағанды қаласы</li>
+                                            <li data-group="polymers" data-index="1">«НаИл» ЖШС Қарағанды қаласы</li>
+                                            </ul>
+
+                                        <div class="category" data-group="holdings">Кешенді химия холдингтері мен инвестициялық жобалар</div>
+                                        <ul class="factory-list" data-group="holdings">
+                                            <li data-group="holdings" data-index="0">Samruk-Kazyna Ondeu Астана</li>
+                                            <li data-group="holdings" data-index="1">«ЕвроХим-Каратау» ЖШС Алматы қаласы</li>
+                                            </ul>
+
+                                        <div class="category" data-group="other">Өзге кәсіпорындар</div>
+                                        <ul class="factory-list" data-group="other">
+                                            <li data-group="other" data-index="0">«Азот зауыты» ЖШС Маңғыстау облысы, Ақтау қаласы</li>
+                                            <li data-group="other" data-index="1">«Актобехимкомбинат Кели» ЖШС Ақтөбе қаласы</li>
+                                            <li data-group="other" data-index="2">«Алматынефтехим А» ЖШС Алматы қаласы</li>
+                                            <li data-group="other" data-index="3">«Бугель-Кызылорда» ЖШС Қызылорда қаласы</li>
+                                            <li data-group="other" data-index="4">«Миком» ЖШС БАТЫС ҚАЗАҚСТАН ОБЛЫСЫ, ОРАЛ қаласы</li>
+                                            <li data-group="other" data-index="5">«Экоминералс» ЖШС Қарағанды қаласы</li>
+                                        </ul>
+                                    </div>
+                                    <div id="map2" style="height: 600px;"></div>
+                                    <div id="factory-info" style="display: none;"></div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .category {
+                                    cursor: pointer;
+                                    margin: 5px 0;
+                                    padding: 10px;
+                                    background-color: #007bff;
+                                    color: white;
+                                    font-weight: bold;
+                                    border-radius: 5px;
+                                    text-align: center;
+                                    font-size: 14px;
+                                }
+                                .category:hover {
+                                    background-color: #0056b3;
+                                }
+                                .factory-list {
+                                    list-style-type: none;
+                                    padding: 0;
+                                    margin: 0;
+                                    display: none;
+                                    background-color: #f1f1f1;
+                                    border-radius: 5px;
+                                    border: 1px solid #ccc;
+                                }
+                                .factory-list li {
+                                    cursor: pointer;
+                                    padding: 8px 10px;
+                                    border-bottom: 1px solid #ddd;
+                                }
+                                .factory-list li:last-child {
+                                    border-bottom: none;
+                                }
+                                .factory-list li:hover {
+                                    background-color: #e9e9e9;
+                                }
+                                .subcategory {
+                                    font-weight: bold;
+                                    background-color: #e0e0e0;
+                                    margin-top: 10px;
+                                    padding: 8px 10px;
+                                    border-top: 1px solid #ccc;
+                                    border-bottom: 1px solid #ccc;
+                                }
+                            </style>
+
+                            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                            <script>
+                                // Инициализация карты
+                                const map2 = L.map('map2').setView([48.0196, 66.9237], 5);
+
+                                // Добавление тайлов
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    Zoom: 18,
+                                    attribution: '© OpenStreetMap contributors'
+                                }).addTo(map2);
+
+                                // Данные объектов
+                                const locations = {
+                                    inorganicChemistry: [
+                                        { 
+                                            name: "«Ақтөбе хром қосындылары зауыты» АҚ (АХҚЗ)", 
+                                            coords: [50.283, 57.167],
+                                            info: {
+                                                year: "1965 жыл",
+                                                location: "Ақтөбе қаласы, Хромтау кенті",
+                                                products: "Хром қосындылары, феррохром",
+                                                capacity: "Жылына 1,2 млн тонна хром қосындылары"
+                                            },
+                                            image: "p13.jpg"
+                                        },
+                                        { 
+                                            name: "«Каустик» АҚ (Павлодар)", 
+                                            coords: [52.297, 76.957],
+                                            info: {
+                                                year: "2002 жыл",
+                                                location: "Павлодар қаласы, Солтүстік өнеркәсіптік аймақ",
+                                                products: "Каустикалық сода, сұйық хлор, тұз қышқылы, натрий гипохлориті",
+                                                capacity: "Жылына 30 мың тонна каустикалық сода, 26,4 мың тонна хлор, 45 мың тонна тұз қышқылы, 6,6 мың тонна натрий гипохлориті"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«СКЗ-U» ЖШС (Қызылорда қаласы)", 
+                                            coords: [44.848, 65.482],
+                                            info: {
+                                                year: "2007 жыл",
+                                                location: "Қызылорда облысы, Жаңақорған ауданы",
+                                                products: "Күкірт қышқылын өндіру",
+                                                capacity: "Жылына 500 000 тонна",
+                                                additional: "Күн электр станциясы арқылы электр энергиясын өндіреді"
+                                            },
+                                            image: "p2.jpg"
+                                        },
+                                        { 
+                                            name: "«СП СКЗ Казатомпром» ЖШС Қызылорда облысы", 
+                                            coords: [44.848, 65.482],
+                                            info: {
+                                                year: "2015 жыл",
+                                                location: "Қызылорда облысы, Қызылорда қаласы",
+                                                products: "Сода, хлор, тұз қышқылы",
+                                                capacity: "Жылына 100 мың тонна сода",
+                                                additional: "Бұл өңір уранға бай, сондықтан кәсіпорынның осы аймақта орналасуы табиғи ресурстар факторымен тығыз байланысты. Сонымен қатар, бұл зауыттың орналасуы көлік инфрақұрылымына, атап айтқанда теміржол желісіне жақын болуымен ерекшеленеді. Қызылорда облысы уран өндірісімен танымал, сондықтан дайын өнімді экспортқа шығару да оңай. Еңбек ресурстары жағынан аймақтың халқы бұл салаға бейімделген, білікті мамандар жеткілікті. Климаттың құрғақ әрі шөлейт болуы ауыл шаруашылығына тиімсіз болғанымен, өнеркәсіптік нысандар үшін кедергі емес."
+                                            },
+                                            image: "p3.jpg"
+                                        },
+                                        { 
+                                            name: "«Тау-Кен Temir» ЖШС (SILICIUM KAZAKHSTAN) Қарағанды қаласы", 
+                                            coords: [49.803, 73.102],
+                                            info: {
+                                                year: "2008 жыл",
+                                                location: "Қарағанды қаласы, Қарағанды облысы",
+                                                products: "Кремний, ферросилиций",
+                                                capacity: "Жылына 25 мың тонна кремний",
+                                                additional: "Қарағанды — Қазақстандағы ірі индустриалды өңір, мұнда металлургия, көмір өндіру және ауыр өнеркәсіп жақсы дамыған. Кәсіпорынның металлургиялық кремний өндіруі осы аймақтағы табиғи шикізат базасына — кварциттер мен көмір қорларына негізделген. Қарағанды қаласы еліміздің орталығында орналасқандықтан, көлік жолдары арқылы еліміздің басқа аймақтарына, тіпті шетелге өнім тасымалдауға қолайлы. Сонымен қатар, Қарағандыда техникалық кадрлар дайындайтын оқу орындары бар, бұл жергілікті еңбек ресурстарының сапасын арттырады."
+                                            },
+                                            image: "p4.jpg"
+                                        },
+                                        { 
+                                            name: "«Жезқазғанредмет» РМК Ұлытау облысы, Жезқазған қаласы", 
+                                            coords: [47.783, 67.766],
+                                            info: {
+                                                year: "1997 жыл",
+                                                location: "Жезқазған қаласы, Ұлытау облысы",
+                                                products: "Металлургиялық концентраттар",
+                                                capacity: "Жылына 500 мың тонна концентрат",
+                                                additional: "Жезқазған — сирек және түсті металдарға бай өңір. Бұл кәсіпорынның аймақта орналасуы оның табиғи ресурстық базасымен түсіндіріледі. Жезқазған мыс, уран, сирек металдармен танымал, сол себепті өндірістік процестерге қажетті шикізат жақын маңда өндіріледі. Сонымен қатар, қалада арнайы дайындықтан өткен кадрлар бар, себебі бұл өңірде бұрыннан металлургия және тау-кен өнеркәсібі жақсы дамыған. Географиялық тұрғыда, теміржол арқылы өнімді тасымалдауға мүмкіндік бар, дегенмен алыс аймақтарға жеткізу кейбір логистикалық шығындарды ұлғайтуы мүмкін."
+                                            },
+                                            image: "p5.jpg"
+                                        },
+                                        { 
+                                            name: "«Реагент-Восток» ЖШС (Павлодар)", 
+                                            coords: [52.297, 76.957],
+                                            info: {
+                                                year: "2005 жыл",
+                                                location: "Павлодар қаласы, Павлодар облысы",
+                                                products: "Химиялық реагенттер",
+                                                capacity: "Жылына 20 мың тонна реагент"
+                                            },
+                                            image: "p1.jpg"
+                                        }
+                                    ],
+                                    agriculturalChemistry: [
+                                        { 
+                                            name: "«Казфосфат» ЖШС Жамбыл облысы", 
+                                            coords: [42.900, 71.366],
+                                            info: {
+                                                year: "1997 жыл",
+                                                location: "Жамбыл облысы, Тараз қаласы",
+                                                products: "Фосфор тыңайтқыштары, фосфорит ұны, сары фосфор, натрий триполифосфаты",
+                                                capacity: "Жылына 1 млн тонна тыңайтқыш",
+                                                additional: "«Казфосфат» ЖШС Жамбыл облысында орналасқан және фосфор өнеркәсібінің жетекші өкілі болып табылады. Компания фосфорит ұны, сары фосфор, натрий триполифосфаты және минералды тыңайтқыштар өндіреді. Өнімдерін ТМД және Еуропа елдеріне экспорттайды. Өндірістік тізбегі толық интеграцияланған, яғни шикізат өндіруден бастап, дайын өнімді жеткізуге дейінгі барлық кезеңдерді қамтиды. 2023 жылы компанияның кірісі 131,6 млрд теңгені құрады, бұл 2022 жылмен салыстырғанда 21,6% артық."
+                                            },
+                                            image: "p6.jpg"
+                                        },
+                                        { 
+                                            name: "«КазАзот» АҚ Маңғыстау облысы, Ақтау қаласы", 
+                                            coords: [43.652, 51.196],
+                                            info: {
+                                                year: "1959 жыл",
+                                                location: "Ақтау қаласы, Маңғыстау облысы",
+                                                products: "Аммиак, аммиак селитрасы, азот қышқылы және табиғи газ",
+                                                capacity: "Қазақстандағы аммиак пен аммиак селитрасының жалғыз өндірушісі",
+                                                additional: "Компания 2005 жылы Ақтау қаласында құрылған. Өнімдері ауыл шаруашылығы мен өнеркәсіпте кеңінен қолданылады. Компания өндірісін жаңғырту және экологиялық стандарттарды сақтау бағытында жұмыс жүргізуде. 2023 жылы компанияның кірісі 61,9 млрд теңге, ал таза пайдасы 21,7 млрд теңге болды."
+                                            },
+                                            image: "p7.jpg"
+                                        },
+                                        { 
+                                            name: "«Кайнар» ЖШС Жамбыл облысы", 
+                                            coords: [42.900, 71.366],
+                                            info: {
+                                                year: "2003 жыл",
+                                                location: "Жамбыл облысы, Тараз қаласы",
+                                                products: "Аккумулятор батареялары",
+                                                capacity: "Өндірістік қуаттылығы мен нарықтағы үлесі туралы нақты ақпарат шектеулі",
+                                                additional: "Компанияның өнімдері ТМД елдеріне экспортталады."
+                                            },
+                                            image: "p8.jpg"
+                                        },
+                                        { 
+                                            name: "«КосАгроКоммерц» ЖШС Қарағанды облысы", 
+                                            coords: [49.803, 73.102],
+                                            info: {
+                                                year: "1995 жыл",
+                                                location: "Қарағанды облысы, Қарағанды қаласы",
+                                                products: "Калий тыңайтқыштары мен пестицидтер",
+                                                capacity: "Өндірістік базасы мен қоймалары Қазақстанның бірнеше өңірінде орналасқан",
+                                                additional: "Компания 1995 жылдан бері жұмыс істейді. Өнімдері Қазақстанның бірнеше өңірінде таратылады. 2020 жылы PROCOTE технологиясын енгізіп, тыңайтқыштардың сапасын арттырды. Өндірістік базасы мен қоймалары Қазақстанның бірнеше өңірінде орналасқан, бұл өнімді тиімді таратуға мүмкіндік береді."
+                                            },
+                                            image: "p9.jpg"
+                                        },
+                                        { 
+                                            name: "«Talas Investment Company» ЖШС Жамбыл облысы", 
+                                            coords: [42.900, 71.366],
+                                            info: {
+                                                year: "2008 жыл",
+                                                location: "Жамбыл облысы, Қаратау қаласы",
+                                                products: "Натрий цианиді мен аммоний сульфаты",
+                                                capacity: "Жылына 15 000 тонна натрий цианиді мен 5 000 тонна аммоний сульфаты",
+                                                additional: "Компания 2008 жылы құрылған. Өнімдері алтын өндіру және химия өнеркәсібінде қолданылады. Компания экологиялық қауіпсіздік пен өндіріс тиімділігін арттыруға баса назар аударады. 2025 жылы зауыттың екінші кезеңі іске қосылып, натрий цианиді өндірісі 30 000 тоннаға дейін ұлғайтылады деп жоспарлануда."
+                                            },
+                                            image: "p10.jpg"
+                                        },
+                                        { 
+                                            name: "«ХАЗРАТ-АЛИ-АКБАР» ЖШС Алматы қаласы", 
+                                            coords: [43.222, 76.851],
+                                            info: {
+                                                year: "2008 жыл",
+                                                location: "Алматы қаласы",
+                                                products: "Азот тыңайтқыштары",
+                                                capacity: "Жылына 150 мың тонна тыңайтқыш",
+                                                additional: "«ХАЗРАТ-АЛИ-АКБАР» ЖШС – Алматы қаласында орналасқан, тыңайтқыштар мен өсімдіктерді қорғау құралдарын өндірумен айналысады. Компания өнімдерін көтерме және бөлшек сауда арқылы сатады, сондай-ақ интернет-дүкен арқылы тапсырыс қабылдайды. Кәсіпорынның өндірістік және сауда қызметі Алматы қаласында шоғырланған. Өнімдері Қазақстанның бірнеше өңірінде таратылады, соның ішінде Алматинская, Солтүстік Қазақстан, Павлодар, Оңтүстік Қазақстан, Жамбыл, Қызылорда және Шығыс Қазақстан облыстары."
+                                            },
+                                            image: "p11.jpg"
+                                        }
+                                    ],
+                                    industrialChemistry: [
+                                        { 
+                                            name: "«Eurotech Industries Ltd» ЖШС", 
+                                            coords: [43.222, 76.851],
+                                            info: {
+                                                year: "2012 жыл",
+                                                location: "Алматы қаласы",
+                                                products: "Өнеркәсіптік химикаттар",
+                                                capacity: "Жылына 100 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«Рауан Налко» ЖШС Атырау", 
+                                            coords: [47.123, 51.925],
+                                            info: {
+                                                year: "2006 жыл",
+                                                location: "Атырау қаласы, Атырау облысы",
+                                                products: "Мұнай-газ саласына арналған химиялық реагенттер, өнеркәсіптік катализаторлар, ингибиторлар, пеногасительдер",
+                                                capacity: "Қазақстандағы химиялық реагенттер нарығында жетекші орын",
+                                                additional: "«Рауан Налко» ЖШС — Атырау қаласында орналасқан, өнеркәсіптік химия саласында қызмет көрсететін компания. Компанияның негізгі қызметі — мұнай-газ саласына арналған химиялық реагенттерді өндіру және жеткізу. Құрылтайшылар: Қазақстандық және америкалық серіктестердің бірлескен кәсіпорны, сәйкесінше 55% және 45% үлеске ие. 2012 жылғы мәлімет бойынша, компанияда 149 қызметкер жұмыс істеген."
+                                            },
+                                            image: "p4.jpg"
+                                        },
+                                        { 
+                                            name: "«ДосМунайХим» ЖШС Атырау қаласы", 
+                                            coords: [47.123, 51.925],
+                                            info: {
+                                                year: "2009 жыл",
+                                                location: "Атырау қаласы, Атырау облысы",
+                                                products: "Мұнай химиясы",
+                                                capacity: "Жылына 75 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«ОргСинтез Казахстан» ЖШС Қарағанды қаласы", 
+                                            coords: [49.803, 73.102],
+                                            info: {
+                                                year: "2011 жыл",
+                                                location: "Қарағанды қаласы, Қарағанды облысы",
+                                                products: "Органикалық синтез өнімдері",
+                                                capacity: "Жылына 30 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        }
+                                    ],
+                                    explosives: [
+                                        { 
+                                            name: "«Каз ЦКУБ «Нитрохим» ЖШС Ақтөбе облысы", 
+                                            coords: [50.283, 57.167],
+                                            info: {
+                                                year: "1995 жыл",
+                                                location: "Ақтөбе қаласы, Ақтөбе облысы",
+                                                products: "Жарылғыш заттар",
+                                                capacity: "Жылына 20 мың тонна жарылғыш зат"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«Орика-Казахстан» АҚ Усть-Каменогорск", 
+                                            coords: [49.948, 82.628],
+                                            info: {
+                                                year: "2000 жыл",
+                                                location: "Усть-Каменогорск қаласы, Шығыс Қазақстан облысы",
+                                                products: "Жарылғыш заттар",
+                                                capacity: "Жылына 15 мың тонна жарылғыш зат"
+                                            },
+                                            image: "p1.jpg"
+                                        }
+                                    ],
+                                    householdChemistry: [
+                                        { 
+                                            name: "«Компания ЭКОХИМ» ЖШС Ақтөбе облысы", 
+                                            coords: [50.283, 57.167],
+                                            info: {
+                                                year: "2005 жыл",
+                                                location: "Ақтөбе қаласы, Ақтөбе облысы",
+                                                products: "Тұрмыстық химия",
+                                                capacity: "Жылына 10 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        }
+                                    ],
+                                    polymers: [
+                                        { 
+                                            name: "Қарағанды резеңке-техникалық бұйымдар зауыты Қарағанды қаласы", 
+                                            coords: [49.803, 73.102],
+                                            info: {
+                                                year: "1970 жыл",
+                                                location: "Қарағанды қаласы, Қарағанды облысы",
+                                                products: "Резеңке-техникалық бұйымдар",
+                                                capacity: "Жылына 5 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«НаИл» ЖШС Қарағанды қаласы", 
+                                            coords: [49.803, 73.102],
+                                            info: {
+                                                year: "2008 жыл",
+                                                location: "Қарағанды қаласы, Қарағанды облысы",
+                                                products: "Полимер өнімдері",
+                                                capacity: "Жылына 8 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        }
+                                    ],
+                                    holdings: [
+                                        { 
+                                            name: "Samruk-Kazyna Ondeu Астана", 
+                                            coords: [51.169, 71.449],
+                                            info: {
+                                                year: "2008 жыл",
+                                                location: "Астана қаласы",
+                                                products: "Химиялық холдинг",
+                                                capacity: "Қазақстанның химиялық өнеркәсібінің 30%"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«ЕвроХим-Каратау» ЖШС Алматы қаласы", 
+                                            coords: [43.222, 76.851],
+                                            info: {
+                                                year: "2010 жыл",
+                                                location: "Алматы қаласы",
+                                                products: "Химиялық холдинг",
+                                                capacity: "Қазақстанның химиялық өнеркәсібінің 20%"
+                                            },
+                                            image: "p1.jpg"
+                                        }
+                                    ],
+                                    other: [
+                                        { 
+                                            name: "«Азот зауыты» ЖШС Маңғыстау облысы, Ақтау қаласы", 
+                                            coords: [43.652, 51.196],
+                                            info: {
+                                                year: "1998 жыл",
+                                                location: "Ақтау қаласы, Маңғыстау облысы",
+                                                products: "Азот өнімдері",
+                                                capacity: "Жылына 100 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«Актобехимкомбинат Кели» ЖШС Ақтөбе қаласы", 
+                                            coords: [50.283, 57.167],
+                                            info: {
+                                                year: "2003 жыл",
+                                                location: "Ақтөбе қаласы, Ақтөбе облысы",
+                                                products: "Химиялық өнімдер",
+                                                capacity: "Жылына 50 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«Алматынефтехим А» ЖШС Алматы қаласы", 
+                                            coords: [43.222, 76.851],
+                                            info: {
+                                                year: "2006 жыл",
+                                                location: "Алматы қаласы",
+                                                products: "Мұнай химиясы",
+                                                capacity: "Жылына 30 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«Бугель-Кызылорда» ЖШС Қызылорда қаласы", 
+                                            coords: [44.848, 65.482],
+                                            info: {
+                                                year: "2009 жыл",
+                                                location: "Қызылорда қаласы, Қызылорда облысы",
+                                                products: "Химиялық өнімдер",
+                                                capacity: "Жылына 20 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«Миком» ЖШС БАТЫС ҚАЗАҚСТАН ОБЛЫСЫ, ОРАЛ қаласы", 
+                                            coords: [51.227, 51.386],
+                                            info: {
+                                                year: "2007 жыл",
+                                                location: "Орал қаласы, Батыс Қазақстан облысы",
+                                                products: "Химиялық өнімдер",
+                                                capacity: "Жылына 15 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        },
+                                        { 
+                                            name: "«Экоминералс» ЖШС Қарағанды қаласы", 
+                                            coords: [49.803, 73.102],
+                                            info: {
+                                                year: "2011 жыл",
+                                                location: "Қарағанды қаласы, Қарағанды облысы",
+                                                products: "Минералды өнімдер",
+                                                capacity: "Жылына 25 мың тонна өнім"
+                                            },
+                                            image: "p1.jpg"
+                                        }
+                                    ]
+                                };
+
+                                const markers = {};
+
+                                // Создание маркеров по группам
+                                Object.keys(locations).forEach(group => {
+                                    markers[group] = [];
+                                    locations[group].forEach((location, idx) => {
+                                        const marker = L.marker(location.coords)
+                                            .bindPopup(`
+                                                <div style="max-width: 300px;">
+                                                    <h4 style="margin-bottom: 10px;">${location.name}</h4>
+                                                    <p><strong>Құрылған жылы:</strong> ${location.info.year}</p>
+                                                    <p><strong>Орналасқан жері:</strong> ${location.info.location}</p>
+                                                    <p><strong>Негізгі өнімдері:</strong> ${location.info.products}</p>
+                                                    <p><strong>Жобалық қуаты:</strong> ${location.info.capacity}</p>
+                                                    ${location.info.additional ? `<p><strong>Қосымша:</strong> ${location.info.additional}</p>` : ''}
+                                                    ${location.image ? `<img src="${location.image}" alt="${location.name}" style="max-width: 100%; height: auto; border-radius: 5px; margin-top: 10px;">` : ''}
+                                                </div>
+                                            `);
+                                        marker.on('click', function() {
+                                            const infoContainer = document.getElementById('factory-info');
+                                            infoContainer.innerHTML = `
+                                                <div style="display: flex; gap: 20px;">
+                                                    <div style="flex: 1;">
+                                                        <h3 style="margin-bottom: 15px;">${location.name}</h3>
+                                                        <p><strong>Құрылған жылы:</strong> ${location.info.year}</p>
+                                                        <p><strong>Орналасқан жері:</strong> ${location.info.location}</p>
+                                                        <p><strong>Негізгі өнімдері:</strong> ${location.info.products}</p>
+                                                        <p><strong>Жобалық қуаты:</strong> ${location.info.capacity}</p>
+                                                        ${location.info.additional ? `<p><strong>Қосымша:</strong> ${location.info.additional}</p>` : ''}
+                                                    </div>
+                                                    <div style="flex: 1;">
+                                                        <img src="${location.image}" alt="${location.name}" style="max-width: 100%; height: auto; border-radius: 5px;">
+                                                    </div>
+                                                </div>
+                                                <button onclick="document.getElementById('factory-info').style.display='none'" 
+                                                        style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 20px; cursor: pointer;">×</button>
+                                            `;
+                                            infoContainer.style.display = 'block';
+                                        });
+                                        markers[group].push(marker);
+                                    });
+                                });
+
+                                // Добавляем контейнер для информации о предприятии
+                                const infoContainer = document.createElement('div');
+                                infoContainer.id = 'factory-info';
+                                infoContainer.style.cssText = `
+                                    position: fixed;
+                                    bottom: 20px;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    background: white;
+                                    padding: 20px;
+                                    border-radius: 10px;
+                                    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+                                    max-width: 800px;
+                                    width: 90%;
+                                    display: none;
+                                    z-index: 1000;
+                                `;
+                                document.body.appendChild(infoContainer);
+
+                                // Раскрытие категорий и отображение маркеров группы
+                                document.querySelectorAll('.category').forEach(category => {
+                                    category.addEventListener('click', () => {
+                                        const group = category.dataset.group;
+                                        const list = document.querySelector(`.factory-list[data-group="${group}"]`);
+                                        
+                                        // Скрываем все списки категорий
+                                        document.querySelectorAll('.factory-list').forEach(l => {
+                                            if (l !== list) {
+                                                l.style.display = 'none';
+                                            }
+                                        });
+                                        
+                                        // Меняем отображение списка
+                                        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+
+                                        // Удаляем все маркеры
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+
+                                        // Если список показан, показываем маркеры
+                                        if (list.style.display === 'block') {
+                                            markers[group].forEach(m => m.addTo(map2));
+                                        }
+
+                                        // Возвращаем масштаб карты
+                                        map2.setView([48.0196, 66.9237], 5, { animate: true, duration: 1.5 });
+
+                                        // Скрываем информацию о предприятии
+                                        document.getElementById('factory-info').style.display = 'none';
+                                    });
+                                });
+
+                                // Обработчик для заводов
+                                let currentMarker = null;
+                                document.querySelectorAll('.factory-list li').forEach(item => {
+                                    item.addEventListener('click', event => {
+                                        const group = event.target.dataset.group;
+                                        const index = event.target.dataset.index;
+
+                                        // Удаляем все маркеры
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+                                        // Скрываем info-блок
+                                        document.getElementById('factory-info').style.display = 'none';
+
+                                        if (group && index !== undefined) {
+                                            const location = locations[group][index];
+                                            const marker = markers[group][index];
+                                            marker.addTo(map2).openPopup();
+                                            map2.setView(marker.getLatLng(), 10, { animate: true, duration: 1.5 });
+                                            currentMarker = marker;
+
+                                            // Показываем информацию о предприятии
+                                            const infoContainer = document.getElementById('factory-info');
+                                            infoContainer.innerHTML = `
+                                                <div style="display: flex; gap: 20px;">
+                                                    <div style="flex: 1;">
+                                                        <h3 style="margin-bottom: 15px;">${location.name}</h3>
+                                                        <p><strong>Құрылған жылы:</strong> ${location.info.year}</p>
+                                                        <p><strong>Орналасқан жері:</strong> ${location.info.location}</p>
+                                                        <p><strong>Негізгі өнімдері:</strong> ${location.info.products}</p>
+                                                        <p><strong>Жобалық қуаты:</strong> ${location.info.capacity}</p>
+                                                        ${location.info.additional ? `<p><strong>Қосымша:</strong> ${location.info.additional}</p>` : ''}
+                                                    </div>
+                                                    <div style="flex: 1;">
+                                                        <img src="${location.image}" alt="${location.name}" style="max-width: 100%; height: auto; border-radius: 5px;">
+                                                    </div>
+                                                </div>
+                                                <button onclick="document.getElementById('factory-info').style.display='none'" 
+                                                        style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 20px; cursor: pointer;">×</button>
+                                            `;
+                                            infoContainer.style.display = 'block';
+                                        }
+                                    });
+                                });
+
+                                // Добавить обработчик клика по карте для открытия информации о предприятии по координатам
+                                map2.on('click', function(e) {
+                                    // Найти ближайший город (предприятие) по координатам
+                                    let found = null;
+                                    let foundGroup = null;
+                                    let foundIndex = null;
+                                    Object.keys(locations).forEach(group => {
+                                        locations[group].forEach((location, idx) => {
+                                            // Радиус совпадения (в градусах)
+                                            const latDiff = Math.abs(location.coords[0] - e.latlng.lat);
+                                            const lngDiff = Math.abs(location.coords[1] - e.latlng.lng);
+                                            if (latDiff < 0.25 && lngDiff < 0.25) {
+                                                found = location;
+                                                foundGroup = group;
+                                                foundIndex = idx;
+                                            }
+                                        });
+                                    });
+                                    // Удалить все маркеры и скрыть info-блок
+                                    Object.keys(markers).forEach(g => {
+                                        markers[g].forEach(m => map2.removeLayer(m));
+                                    });
+                                    document.getElementById('factory-info').style.display = 'none';
+                                    if (found && foundGroup !== null && foundIndex !== null) {
+                                        // Показать маркер и info-блок
+                                        const marker = markers[foundGroup][foundIndex];
+                                        marker.addTo(map2).openPopup();
+                                        map2.setView(marker.getLatLng(), 10, { animate: true, duration: 1.5 });
+                                        const infoContainer = document.getElementById('factory-info');
+                                        infoContainer.innerHTML = `
+                                            <div style="display: flex; gap: 20px;">
+                                                <div style="flex: 1;">
+                                                    <h3 style="margin-bottom: 15px;">${found.name}</h3>
+                                                    <p><strong>Құрылған жылы:</strong> ${found.info.year}</p>
+                                                    <p><strong>Орналасқан жері:</strong> ${found.info.location}</p>
+                                                    <p><strong>Негізгі өнімдері:</strong> ${found.info.products}</p>
+                                                    <p><strong>Жобалық қуаты:</strong> ${found.info.capacity}</p>
+                                                    ${found.info.additional ? `<p><strong>Қосымша:</strong> ${found.info.additional}</p>` : ''}
+                                                </div>
+                                                <div style="flex: 1;">
+                                                    <img src="${found.image}" alt="${found.name}" style="max-width: 100%; height: auto; border-radius: 5px;">
+                                                </div>
+                                            </div>
+                                            <button onclick="document.getElementById('factory-info').style.display='none'" 
+                                                    style="position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 20px; cursor: pointer;">×</button>
+                                        `;
+                                        infoContainer.style.display = 'block';
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color: #1e1d3a; color: white; padding: 40px 20px; text-align: center;">
+        <div style="max-width: 800px; margin: auto;">
+          <h2 style="font-weight: bold;">GeoMapEd</h2>
+          <p style="margin-top: 0;">Білім беру бағдарламасы</p>
+      
+          <p style="margin: 30px 0 10px;">Біздің жаңартуларымызға жазылыңыз</p>
+      
+          <form style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+            <input type="email" placeholder="Сіздің электрондық поштаңыз"
+                   style="padding: 10px 20px; border: none; border-radius: 25px; min-width: 250px; outline: none;">
+            <button type="submit"
+                    style="padding: 10px 30px; background-color: #45d0d1; color: white; border: none; border-radius: 25px; cursor: pointer;">
+              Жазылу
+            </button>
+          </form>
+      
+          <div style="font-size: 14px; color: #aaa; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="#" style="color: #aaa; text-decoration: none;">Курстар</a>
+            <span>|</span>
+            <a href="#" style="color: #aaa; text-decoration: none;">Құпиялық саясаты</a>
+            <span>|</span>
+            <a href="#" style="color: #aaa; text-decoration: none;">Пайдалану шарттары</a>
+          </div>
+      
+          <p style="margin-top: 20px; font-size: 13px; color: #aaa;">© 2025 GeoMapEd. Барлық құқықтар қорғалған</p>
+        </div>
+    </footer>
+      
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - GeoMapEd</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            justify-content: space-between;
+        }
+        .header .logo {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #1e1d3a;
+        }
+        .header nav {
+            display: flex;
+            gap: 30px;
+        }
+        .header nav a {
+            color: #222;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .header nav a:hover {
+            color: #45d0d1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .header .profile span {
+            font-weight: 500;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: 0;
+            background: rgba(69, 208, 209, 0.10);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .search-bar {
+            margin-top: 40px;
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .search-bar input {
+            width: 60%;
+            min-width: 220px;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            outline: none;
+        }
+        .search-bar button {
+            background: #45d0d1;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 0 32px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-bar button:hover {
+            background: #3ab8b9;
+        }
+        .filters {
+            margin: 20px 0 0 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        .filter-select {
+            padding: 10px 24px;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 1em;
+            min-width: 120px;
+            cursor: pointer;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: -60px auto 0 auto;
+            padding: 0 20px 40px 20px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .course-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .course-card:hover {
+            box-shadow: 0 6px 24px rgba(69,208,209,0.15);
+            transform: translateY(-4px);
+        }
+        .course-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+        .course-card-body {
+            padding: 18px 18px 12px 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .course-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .course-meta .dot {
+            font-size: 1.2em;
+            margin: 0 4px;
+        }
+        .course-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 6px;
+            color: #1e1d3a;
+        }
+        .course-desc {
+            color: #555;
+            font-size: 0.98em;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+        .course-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .course-footer img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .course-footer span {
+            font-size: 0.98em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="map.html" class="logo" style="text-decoration: none; color: inherit;">GeoMapEd</a>
+        <nav>
+            <a href="index.html">Басты бет</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="course-section-1.html">Курстар</a>
+            <a href="#">Блог</a>
+            <a href="about.html">Біз туралы</a>
+        </nav>
+        <div class="profile">
+            <img src="x.jpg" alt="Профиль">
+            <span>Жанбике</span>
+        </div>
+    </div>
+    <div class="hero" style="background: url('123.jpg') center/cover no-repeat; min-height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+        <div class="hero-content">
+            <form class="search-bar" onsubmit="return false;">
+                <input type="text" placeholder="География" />
+                <button type="submit">Іздеу</button>
+            </form>
+            <div class="filters">
+                <select class="filter-select"><option>Пән</option></select>
+                <select class="filter-select"><option>Сынып</option></select>
+                <select class="filter-select"><option>Тақырып</option></select>
+                <select class="filter-select"><option>Тіл</option></select>
+            </div>
+        </div>
+    </div>
+    <div style="background: #f7f7f7; height: 40px; width: 100%;"></div>
+    <div class="main-content">
+        <div class="card-grid">
+            <!-- Card 1 -->
+            <div class="course-card">
+                <img src="5.png" alt="5 сынып">
+                <div class="course-card-body">
+                    <div class="course-meta">
+                        <span>География</span>
+                    </div>
+                    <div class="course-title">5 сынып</div>
+                    <div class="course-desc">Жаратылыстану негізінде географияға кіріспе, табиғат пен адам арасындағы байланысы</div>
+                    <div class="course-footer">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="course-card">
+                <img src="6.png" alt="6 сынып">
+                <div class="course-card-body">
+                    <div class="course-meta">
+                        <span>География</span>
+                    </div>
+                    <div class="course-title">6 сынып</div>
+                    <div class="course-desc">Жаратылыстану</div>
+                    <div class="course-footer">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="course-card">
+                <img src="7.png" alt="7 сынып">
+                <div class="course-card-body">
+                    <div class="course-meta">
+                        <span>География</span>
+                    </div>
+                    <div class="course-title">7 сынып</div>
+                    <div class="course-desc">Материктер мен мұхиттардың физикалық-географиялық сипаттамалары, табиғаты мен ресурстары</div>
+                    <div class="course-footer">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="course-card">
+                <img src="8.png" alt="8 сынып">
+                <div class="course-card-body">
+                    <div class="course-meta">
+                        <span>География</span>
+                    </div>
+                    <div class="course-title">8 сынып</div>
+                    <div class="course-desc">Қазақстанның физикалық географиясы, жер бедері, климаты, өзен-көлдері мен табиғат зоналары</div>
+                    <div class="course-footer">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <a href="course-section-1.html" style="text-decoration: none; color: inherit;">
+                <div class="course-card">
+                    <img src="9.png" alt="9 сынып">
+                    <div class="course-card-body">
+                        <div class="course-meta">
+                            <span>География</span>
+                        </div>
+                        <div class="course-title">9 сынып</div>
+                        <div class="course-desc">Қазақстанның әлеуметтік-экономикалық географиясы: халқы, өнеркәсібі, ауыл шаруашылығы, көлігі, аймақтары.</div>
+                        <div class="course-footer">
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- Card 6 -->
+            <div class="course-card">
+                <img src="10.png" alt="10 сынып">
+                <div class="course-card-body">
+                    <div class="course-meta">
+                        <span>География</span>
+                    </div>
+                    <div class="course-title">10 сынып</div>
+                    <div class="course-desc">Дүниежүзінің экономикалық және әлеуметтік географиясы, елдер мен аймақтардың даму ерекшеліктері.</div>
+                    <div class="course-footer">
+                    </div>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="course-card">
+                <img src="11.png" alt="11 сынып">
+                <div class="course-card-body">
+                    <div class="course-meta">
+                        <span>География</span>
+                    </div>
+                    <div class="course-title">11 сынып</div>
+                    <div class="course-desc">Қазақстанның экономикалық-географиялық аудандары мен аймақтық даму ерекшеліктері</div>
+                    <div class="course-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer style="background-color: #1e1d3a; color: white; padding: 40px 20px; text-align: center; margin-top: 40px;">
+        <div style="max-width: 800px; margin: auto;">
+            <h2 style="font-weight: bold;">GeoMapEd</h2>
+            <p style="margin-top: 0;">Білім беру бағдарламасы</p>
+            <p style="margin: 30px 0 10px;">Біздің жаңартуларымызға жазылыңыз</p>
+            <form style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+                <input type="email" placeholder="Сіздің электрондық поштаңыз"
+                       style="padding: 10px 20px; border: none; border-radius: 25px; min-width: 250px; outline: none;">
+                <button type="submit"
+                        style="padding: 10px 30px; background-color: #45d0d1; color: white; border: none; border-radius: 25px; cursor: pointer;">
+                    Жазылу
+                </button>
+            </form>
+            <div style="font-size: 14px; color: #aaa; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="course-section-1.html" style="color: #aaa; text-decoration: none;">Курстар</a>
+                <span>|</span>
+                <a href="#" style="color: #aaa; text-decoration: none;">Құпиялық саясаты</a>
+                <span>|</span>
+                <a href="#" style="color: #aaa; text-decoration: none;">Пайдалану шарттары</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 13px; color: #aaa;">© 2025 GeoMapEd. Барлық құқықтар қорғалған</p>
+        </div>
+    </footer>
+</body>
+</html> 

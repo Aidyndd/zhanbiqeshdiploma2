@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <title>Қазақстандағы машина жасау өнеркәсібі</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            justify-content: space-between;
+        }
+        .header .logo {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #1e1d3a;
+        }
+        .header nav {
+            display: flex;
+            gap: 30px;
+        }
+        .header nav a {
+            color: #222;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .header nav a:hover {
+            color: #45d0d1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .header .profile span {
+            font-weight: 500;
+        }
+        .nav-link {
+            cursor: pointer;
+        }
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link, .navbar-brand, .dropdown-item {
+            color: #333333 !important;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .nav-pills .nav-link {
+            text-align: left;
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        .nav-pills .nav-link:hover {
+            background-color: #0b5ed7;
+            color: #ffffff !important;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+            color: #ffffff !important;
+        }
+        .nav-pills {
+            background-color: #1e2a38;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        .feedback-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+        .correct {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>');
+        }
+        .incorrect {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>');
+        }
+        .text-input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 2px 5px;
+            margin: 0 5px;
+            width: 200px;
+        }
+        .text-input.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .text-input.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        function checkAnswers() {
+            const correctAnswers = {
+                q1: 'Қостанай',
+                q2: 'Өскемен',
+                q3: 'Қарағанды',
+                q4: 'Шымкент',
+                q5: 'Шымкент',
+                q6: 'Алматы',
+                q7: 'Петропавл',
+                q8: 'Қарағанды',
+                q9: 'Шымкент'
+            };
+
+            let score = 0;
+            let total = Object.keys(correctAnswers).length;
+            let results = [];
+
+            for (let i = 1; i <= total; i++) {
+                const questionName = `q${i}`;
+                const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
+                
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === correctAnswers[questionName]) {
+                        score++;
+                        results.push(`Сұрақ ${i}: Дұрыс ✅`);
+                    } else {
+                        results.push(`Сұрақ ${i}: Қате ❌ (Дұрыс жауап: ${correctAnswers[questionName]})`);
+                    }
+                } else {
+                    results.push(`Сұрақ ${i}: Жауап берілмеген ❌ (Дұрыс жауап: ${correctAnswers[questionName]})`);
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Нәтиже: ${score}/${total}</h5>
+                        <div class="mt-3">
+                            ${results.map(result => `<p>${result}</p>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkTextAnswers() {
+            const inputs = document.querySelectorAll('.text-input');
+            let correctCount = 0;
+            let totalCount = inputs.length;
+            let results = [];
+
+            inputs.forEach((input, index) => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = input.dataset.answer.toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                    results.push(`Жауап ${index + 1}: Дұрыс ✅`);
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                    results.push(`Жауап ${index + 1}: Қате ❌ (Дұрыс жауап: ${input.dataset.answer})`);
+                }
+            });
+
+            const resultDiv = document.getElementById('textResult');
+            resultDiv.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Нәтиже: ${correctCount}/${totalCount}</h5>
+                        <div class="mt-3">
+                            ${results.map(result => `<p>${result}</p>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="map.html" class="logo" style="text-decoration: none; color: inherit;">GeoMapEd</a>
+        <nav>
+            <a href="#">Басты бет</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="course-section-1.html">Курстар</a>
+            <a href="#">Блог</a>
+            <a href="#">Біз туралы</a>
+        </nav>
+        <div class="profile">
+            <img src="x.jpg" alt="Профиль">
+            <span>Жанбике</span>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center;">
+                    <h1 style="font-weight: 600;">Қазақстандағы машина жасау өнеркәсібі</h1>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="pill" data-bs-target="#tab1" type="button" role="tab">
+                            Теориялық бөлім
+                        </button>
+                        <button class="nav-link" id="tab2-tab" data-bs-toggle="pill" data-bs-target="#tab2" type="button" role="tab">
+                            Практикалық тапсырмалар
+                        </button>
+                        <button class="nav-link" id="tab3-tab" data-bs-toggle="pill" data-bs-target="#tab3" type="button" role="tab">
+                            Тақырыптық тест
+                        </button>
+                        <button class="nav-link" id="tab4-tab" data-bs-toggle="pill" data-bs-target="#tab4" type="button" role="tab">
+                            Картамен практикалық жұмыс
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                            <div class="ratio ratio-16x9 mb-4">
+                                <iframe src="https://www.youtube.com/embed/qn_r9206uIU" title="YouTube video" allowfullscreen></iframe>
+                            </div>
+                            <div class="content-section">
+                                <p class="lead mb-4">
+                                    Машина жасау өнеркәсібі – Қазақстан экономикасының индустриялық-инновациялық даму бағытындағы негізгі тірек салаларының бірі. Ол елдің түрлі секторларын қажетті техникамен, құрал-жабдықпен және көлік құралдарымен қамтамасыз ете отырып, экономиканың техникалық деңгейін көтеруге ықпал етеді. Бұл сала еңбек пен технологияны көп қажет ететін, ұзақ өндірістік циклге негізделген күрделі өндіріс жүйесі болып табылады.
+                                </p>
+
+                                <h2 class="mb-4">Негізгі бағыттары</h2>
+                                <p>Қазақстанда машина жасау өнеркәсібі бірнеше басты бағытта дамып келеді:</p>
+                                <ul class="list-group list-group-flush mb-4">
+                                    <li class="list-group-item">Автокөлік жасау – жеңіл және жүк көліктерін құрастыру, автобус өндірісі;</li>
+                                    <li class="list-group-item">Ауыр машина жасау – энергетика, теміржол, тау-кен өндірісіне арналған техникалар;</li>
+                                    <li class="list-group-item">Ауыл шаруашылығы техникасы – тракторлар, комбайндар, дән себу машиналары;</li>
+                                    <li class="list-group-item">Арнайы және әскери техника жасау – қорғаныс саласына арналған өнімдер;</li>
+                                    <li class="list-group-item">Құрал-сайман және бөлшектер өндірісі – машина бөлшектері, электр-механикалық құралдар.</li>
+                                </ul>
+
+                                <h2 class="mb-4">Географиялық шоғырлануы</h2>
+                                <p>Қазақстанда машина жасау кәсіпорындары көбіне өнеркәсіптік инфрақұрылымы дамыған, көліктік және еңбек ресурстарына қолжетімді өңірлерде орналасқан.</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush mb-4">
+                                            <li class="list-group-item"><strong>Қостанай</strong> – автокөлік құрастырудың басты орталығы</li>
+                                            <li class="list-group-item"><strong>Өскемен</strong> – «Азия Авто» зауыты</li>
+                                            <li class="list-group-item"><strong>Қарағанды</strong> – ауыр техника мен жүк көліктері</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush mb-4">
+                                            <li class="list-group-item"><strong>Петропавл</strong> – ауыр машина жасау саласы</li>
+                                            <li class="list-group-item"><strong>Шымкент</strong> – арнайы көлік және автобус өндірісі</li>
+                                            <li class="list-group-item"><strong>Алматы мен Астана</strong> – құрал-сайман жасау</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h2 class="mb-4">Саланы дамыту факторлары</h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush mb-4">
+                                            <li class="list-group-item">Шикізат және металлургиялық база</li>
+                                            <li class="list-group-item">Көлік және логистикалық жүйелер</li>
+                                            <li class="list-group-item">Кадрлық әлеует</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush mb-4">
+                                            <li class="list-group-item">Индустриялық аймақтар</li>
+                                            <li class="list-group-item">Мемлекеттік қолдау</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h2 class="mb-4">Мәселелері мен перспективалары</h2>
+                                <p>Салада бірқатар мәселелер де бар: өндірістік жабдықтардың ескіруі, технологиялық тәуелділік, қосалқы бөлшектердің көп бөлігін шетелден әкелу қажеттілігі. Алайда соңғы жылдары отандық кәсіпорындарда модульдік құрастыру, локализация деңгейін арттыру, сандық технологиялар енгізу, экологиялық стандарттарға бейімделу секілді бағыттар қарқынды дамып келеді.</p>
+
+                                <p class="mt-4">Қазіргі таңда Қазақстан машина жасау саласында инженерлік-технологиялық кадрлар даярлау, ҒЗТК жобаларымен интеграция, инновациялық өндірістер ашу сияқты жүйелі қадамдар арқылы бәсекеге қабілетті өнім шығаруға ұмтылуда.</p>
+
+                                <p class="mt-4">Машина жасау өнеркәсібі – Қазақстанның экономикалық тәуелсіздігі мен технологиялық қуатының тірегі. Бұл сала елдің өнеркәсіптік әлеуетін арттырумен қатар, экспорттық мүмкіндіктерін де кеңейтеді. Болашақта отандық машина жасауды цифрландыру, жасанды интеллектке негізделген техникалар өндіру және халықаралық стандарттарға сәйкестік – басты басымдықтар болмақ.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab2" role="tabpanel">
+                            <h3>Практикалық тапсырмалар</h3>
+                            <h4 class="mt-4">1 тапсырма. Өндірістердің орналасқан қаласын тап</h4>
+
+                            <form id="locationForm" class="mt-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-4">
+                                            <h5>1. «СарыарқаАвтоПром» ЖШС</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1a" value="Қостанай">
+                                                <label class="form-check-label" for="q1a">Қостанай</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1b" value="Астана">
+                                                <label class="form-check-label" for="q1b">Астана</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1c" value="Тараз">
+                                                <label class="form-check-label" for="q1c">Тараз</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>2. «Азия Авто»</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2a" value="Өскемен">
+                                                <label class="form-check-label" for="q2a">Өскемен</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2b" value="Алматы">
+                                                <label class="form-check-label" for="q2b">Алматы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2c" value="Атырау">
+                                                <label class="form-check-label" for="q2c">Атырау</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>3. «КамАЗ-Инжиниринг» (жүк көлігі мен арнайы техника)</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3a" value="Астана">
+                                                <label class="form-check-label" for="q3a">Астана</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3b" value="Қостанай">
+                                                <label class="form-check-label" for="q3b">Қостанай</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3c" value="Қарағанды">
+                                                <label class="form-check-label" for="q3c">Қарағанды</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>4. «ҚазАгроМаш» (ауылшаруашылық техникалары)</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4a" value="Шымкент">
+                                                <label class="form-check-label" for="q4a">Шымкент</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4b" value="Павлодар">
+                                                <label class="form-check-label" for="q4b">Павлодар</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4c" value="Орал">
+                                                <label class="form-check-label" for="q4c">Орал</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>5. «Daewoo Bus Kazakhstan» (автобус құрастыру)</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5a" value="Алматы">
+                                                <label class="form-check-label" for="q5a">Алматы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5b" value="Ақтөбе">
+                                                <label class="form-check-label" for="q5b">Ақтөбе</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5c" value="Шымкент">
+                                                <label class="form-check-label" for="q5c">Шымкент</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>6. «Hyundai Trans Kazakhstan» – жеңіл көлік құрастыру</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6a" value="Алматы">
+                                                <label class="form-check-label" for="q6a">Алматы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6b" value="Астана">
+                                                <label class="form-check-label" for="q6b">Астана</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6c" value="Түркістан">
+                                                <label class="form-check-label" for="q6c">Түркістан</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>7. «AgromashHolding KZ» – комбайндар мен ауылшаруашылық техникасы</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7a" value="Петропавл">
+                                                <label class="form-check-label" for="q7a">Петропавл</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7b" value="Қостанай">
+                                                <label class="form-check-label" for="q7b">Қостанай</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7c" value="Павлодар">
+                                                <label class="form-check-label" for="q7c">Павлодар</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>8. «KAMAZ Engineering Trading» – компоненттер мен техникалық құралдар</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8a" value="Қарағанды">
+                                                <label class="form-check-label" for="q8a">Қарағанды</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8b" value="Шымкент">
+                                                <label class="form-check-label" for="q8b">Шымкент</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8c" value="Талдықорған">
+                                                <label class="form-check-label" for="q8c">Талдықорған</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>9. «KazKioti» – ауылшаруашылық тракторлары (Korea-Kazakhstan)</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9a" value="Шымкент">
+                                                <label class="form-check-label" for="q9a">Шымкент</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9b" value="Көкшетау">
+                                                <label class="form-check-label" for="q9b">Көкшетау</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9c" value="Қарағанды">
+                                                <label class="form-check-label" for="q9c">Қарағанды</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="button" class="btn btn-primary" onclick="checkAnswers()">Жауаптарды тексеру</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div id="result" class="mt-4"></div>
+
+                            <h4 class="mt-4">2 тапсырма. Өнеркәсіп саласы Өндіріс шоғырланған аймақтар</h4>
+                            
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div id="map" style="height: 500px; width: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <script>
+                                // Initialize the map
+                                var map = L.map('map').setView([48.0, 66.0], 5);
+
+                                // Add OpenStreetMap tiles
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    maxZoom: 19,
+                                    attribution: '© OpenStreetMap contributors'
+                                }).addTo(map);
+
+                                // Define city coordinates
+                                const cities = {
+                                    'Қостанай': [53.2144, 63.6246],
+                                    'Петропавл': [54.8728, 69.1438],
+                                    'Шымкент': [42.3000, 69.6000],
+                                    'Алматы': [43.2220, 76.8512],
+                                    'Астана': [51.1694, 71.4491]
+                                };
+
+                                // Store markers
+                                const markers = {};
+                                const foundCities = new Set();
+                                let incorrectMarker = null; // Store reference to incorrect marker
+
+                                // Add click event to map
+                                map.on('click', function(e) {
+                                    const clickedLatLng = e.latlng;
+                                    
+                                    // Check if click is near any city
+                                    Object.entries(cities).forEach(([city, coords]) => {
+                                        const distance = map.distance(clickedLatLng, coords);
+                                        
+                                        // If click is within 100km of a city
+                                        if (distance < 100000) {
+                                            if (!foundCities.has(city)) {
+                                                foundCities.add(city);
+                                                
+                                                // Add green logo
+                                                const correctIcon = L.divIcon({
+                                                    className: 'feedback-icon correct',
+                                                    html: '<img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png" style="width: 25px; height: 41px;">',
+                                                    iconSize: [25, 41],
+                                                    iconAnchor: [12, 41],
+                                                    popupAnchor: [1, -34]
+                                                });
+                                                
+                                                L.marker(coords, {icon: correctIcon})
+                                                    .bindPopup(city)
+                                                    .addTo(map);
+                                            }
+                                        } else {
+                                            // Remove previous incorrect marker if it exists
+                                            if (incorrectMarker) {
+                                                map.removeLayer(incorrectMarker);
+                                            }
+                                            
+                                            // Wrong location - show red logo
+                                            const incorrectIcon = L.divIcon({
+                                                className: 'feedback-icon incorrect',
+                                                html: '<img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png" style="width: 25px; height: 41px;">',
+                                                iconSize: [25, 41],
+                                                iconAnchor: [12, 41],
+                                                popupAnchor: [1, -34]
+                                            });
+                                            
+                                            // Store reference to new incorrect marker
+                                            incorrectMarker = L.marker(clickedLatLng, {icon: incorrectIcon}).addTo(map);
+                                        }
+                                    });
+                                });
+                            </script>
+
+                            <div class="text-end mt-4">
+                                <a href="#tab3" class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#tab3">Жалғастыру</a>
+                            </div>
+
+                            <h4 class="mt-4">3-тапсырма. Төмендегі мәтінді оқып, бос орындарға тиісті сөздерді қойыңыз.</h4>
+                            
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <p>Қазақстандағы машина жасау өнеркәсібі елдің экономикалық құрылымында маңызды рөл атқарады. Бұл сала негізінен <input type="text" class="text-input" data-answer="автокөлік жасау">, <input type="text" class="text-input" data-answer="ауыр техника жасау және ауыл шаруашылығы"> машиналарын шығару бағыттары бойынша дамып келеді. Машина жасау кәсіпорындарының географиялық орналасуы көбінесе <input type="text" class="text-input" data-answer="шикізат"> базасының жақындығына және <input type="text" class="text-input" data-answer="тұтынушы"> нарығына бағдарланған.</p>
+
+                                    <p>Қазақстандағы ауыр машина жасау өнеркәсібінің басты орталығы – <input type="text" class="text-input" data-answer="Петропавл"> қаласы. Бұл қалада орналасқан Петропавл ауыр машина жасау зауыты энергетика, теміржол және қорғаныс салаларына арналған ірі техника шығарумен айналысады. Сондай-ақ, <input type="text" class="text-input" data-answer="Қарағанды"> қаласындағы «КамАЗ-Инжиниринг» зауыты жүк көліктері мен әскери техникалар жинақтайды.</p>
+
+                                    <p>Ауыл шаруашылығы техникаларын шығару саласында <input type="text" class="text-input" data-answer="AgromashHolding KZ"> компаниясы жетекші орын алады. Бұл кәсіпорын <input type="text" class="text-input" data-answer="Қостанайда"> орналасқан және трактор, комбайн, егін себу техникасын өндіреді. Сонымен қатар, "KazKioti" және "KazTechMash" сияқты кәсіпорындар да осы бағытта жұмыс істейді.</p>
+
+                                    <p>Машина жасау өнеркәсібінің дамуына <input type="text" class="text-input" data-answer="еңбек ресурстарының қолжетімділігі">, <input type="text" class="text-input" data-answer="көліктік инфрақұрылымның"> дамуы және индустриялық аймақтардың болуы сияқты факторлар әсер етеді. Бұл салада өндірілген өнімдер <input type="text" class="text-input" data-answer="ауыл шаруашылығы, құрылыс, көлік, энергетика"> және логистика салаларында кеңінен қолданылады. Сондықтан машина жасау – тек өндіріс қана емес, елдің технологиялық тәуелсіздігін қамтамасыз ететін стратегиялық бағыттардың бірі.</p>
+
+                                    <div class="text-center mt-4">
+                                        <button type="button" class="btn btn-primary" onclick="checkTextAnswers()">Жауаптарды тексеру</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="textResult" class="mt-4"></div>
+
+                            <script>
+                                function checkTextAnswers() {
+                                    const inputs = document.querySelectorAll('.text-input');
+                                    let correctCount = 0;
+                                    let totalCount = inputs.length;
+                                    let results = [];
+
+                                    inputs.forEach((input, index) => {
+                                        const userAnswer = input.value.trim().toLowerCase();
+                                        const correctAnswer = input.dataset.answer.toLowerCase();
+                                        
+                                        if (userAnswer === correctAnswer) {
+                                            correctCount++;
+                                            input.classList.add('correct');
+                                            input.classList.remove('incorrect');
+                                            results.push(`Жауап ${index + 1}: Дұрыс ✅`);
+                                        } else {
+                                            input.classList.add('incorrect');
+                                            input.classList.remove('correct');
+                                            results.push(`Жауап ${index + 1}: Қате ❌ (Дұрыс жауап: ${input.dataset.answer})`);
+                                        }
+                                    });
+
+                                    const resultDiv = document.getElementById('textResult');
+                                    resultDiv.innerHTML = `
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Нәтиже: ${correctCount}/${totalCount}</h5>
+                                                <div class="mt-3">
+                                                    ${results.map(result => `<p>${result}</p>`).join('')}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            </script>
+
+                            <style>
+                                .text-input {
+                                    border: 1px solid #ccc;
+                                    border-radius: 4px;
+                                    padding: 2px 5px;
+                                    margin: 0 5px;
+                                    width: 200px;
+                                }
+                                .text-input.correct {
+                                    background-color: #d4edda;
+                                    border-color: #c3e6cb;
+                                }
+                                .text-input.incorrect {
+                                    background-color: #f8d7da;
+                                    border-color: #f5c6cb;
+                                }
+                            </style>
+
+                            <div class="text-end mt-4">
+                                <a href="#tab3" class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#tab3">Жалғастыру</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab3" role="tabpanel">
+                            <h3>Тақырыптық тест</h3>
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <form id="testForm">
+                                        <div class="mb-4">
+                                            <h5>1. Машина жасау өнеркәсібі қандай салаға жатады?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1a" value="A">
+                                                <label class="form-check-label" for="q1a">A) Жеңіл өнеркәсіп</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1b" value="B">
+                                                <label class="form-check-label" for="q1b">B) Ауыр өнеркәсіп</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1c" value="C">
+                                                <label class="form-check-label" for="q1c">C) Химия өнеркәсібі</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1d" value="D">
+                                                <label class="form-check-label" for="q1d">D) Ауыл шаруашылығы</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>2. Машина жасау өнеркәсібінің негізгі шикізаты:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2a" value="A">
+                                                <label class="form-check-label" for="q2a">A) Мақта</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2b" value="B">
+                                                <label class="form-check-label" for="q2b">B) Ағаш</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2c" value="C">
+                                                <label class="form-check-label" for="q2c">C) Металл</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2d" value="D">
+                                                <label class="form-check-label" for="q2d">D) Мұнай</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>3. Қазақстанда машина жасау өнеркәсібі дамыған ірі қала:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3a" value="A">
+                                                <label class="form-check-label" for="q3a">A) Атырау</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3b" value="B">
+                                                <label class="form-check-label" for="q3b">B) Семей</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3c" value="C">
+                                                <label class="form-check-label" for="q3c">C) Өскемен</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3d" value="D">
+                                                <label class="form-check-label" for="q3d">D) Қызылорда</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>4. Өскемен қаласында қандай техника шығарылады?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4a" value="A">
+                                                <label class="form-check-label" for="q4a">A) Кеме</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4b" value="B">
+                                                <label class="form-check-label" for="q4b">B) Автомобиль</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4c" value="C">
+                                                <label class="form-check-label" for="q4c">C) Ұшақ</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4d" value="D">
+                                                <label class="form-check-label" for="q4d">D) Мақта жинағыш</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>5. Павлодар трактор зауыты шығаратын өнім:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5a" value="A">
+                                                <label class="form-check-label" for="q5a">A) Ауыл шаруашылық техникасы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5b" value="B">
+                                                <label class="form-check-label" for="q5b">B) Металл бұйымдары</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5c" value="C">
+                                                <label class="form-check-label" for="q5c">C) Цемент</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5d" value="D">
+                                                <label class="form-check-label" for="q5d">D) Тігін машиналары</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>6. Машина жасау өнеркәсібі ең алдымен неге байланысты орналасады?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6a" value="A">
+                                                <label class="form-check-label" for="q6a">A) Тұтынушыға жақын болу</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6b" value="B">
+                                                <label class="form-check-label" for="q6b">B) Туризмге</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6c" value="C">
+                                                <label class="form-check-label" for="q6c">C) Көмір кен орындарына</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6d" value="D">
+                                                <label class="form-check-label" for="q6d">D) Экологиялық жағдайға</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>7. Қазақстанда теміржол вагонын жасайтын зауыт қай қалада орналасқан?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7a" value="A">
+                                                <label class="form-check-label" for="q7a">A) Қарағанды</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7b" value="B">
+                                                <label class="form-check-label" for="q7b">B) Өскемен</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7c" value="C">
+                                                <label class="form-check-label" for="q7c">C) Астана</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7d" value="D">
+                                                <label class="form-check-label" for="q7d">D) Талдықорған</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>8. Машина жасауға қажетті кадрлар қай оқу орындарында даярланады?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8a" value="A">
+                                                <label class="form-check-label" for="q8a">A) Медицина университеттерінде</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8b" value="B">
+                                                <label class="form-check-label" for="q8b">B) Техникалық университеттерде</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8c" value="C">
+                                                <label class="form-check-label" for="q8c">C) Өнер академиясында</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8d" value="D">
+                                                <label class="form-check-label" for="q8d">D) Әскери училищеде</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>9. Машина жасау қандай өнімдер шығарады?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9a" value="A">
+                                                <label class="form-check-label" for="q9a">A) Тамақ, сусын</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9b" value="B">
+                                                <label class="form-check-label" for="q9b">B) Киім-кешек</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9c" value="C">
+                                                <label class="form-check-label" for="q9c">C) Автомобиль, станок, техника</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9d" value="D">
+                                                <label class="form-check-label" for="q9d">D) Құрылыс материалдары</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <h5>10. Машина жасау өнеркәсібінің дамуына не әсер етеді?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10a" value="A">
+                                                <label class="form-check-label" for="q10a">A) Климат</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10b" value="B">
+                                                <label class="form-check-label" for="q10b">B) Ғылым мен техника дамуы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10c" value="C">
+                                                <label class="form-check-label" for="q10c">C) Мұнай бағасы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10d" value="D">
+                                                <label class="form-check-label" for="q10d">D) Орман қоры</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="button" class="btn btn-primary" onclick="checkTestAnswers()">Жауаптарды тексеру</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div id="testResult" class="mt-4"></div>
+
+                            <script>
+                                function checkTestAnswers() {
+                                    const correctAnswers = {
+                                        q1: 'B',
+                                        q2: 'C',
+                                        q3: 'C',
+                                        q4: 'B',
+                                        q5: 'A',
+                                        q6: 'A',
+                                        q7: 'C',
+                                        q8: 'B',
+                                        q9: 'C',
+                                        q10: 'B'
+                                    };
+
+                                    let score = 0;
+                                    let total = Object.keys(correctAnswers).length;
+                                    let results = [];
+
+                                    for (let i = 1; i <= total; i++) {
+                                        const questionName = `q${i}`;
+                                        const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
+                                        
+                                        if (selectedAnswer) {
+                                            if (selectedAnswer.value === correctAnswers[questionName]) {
+                                                score++;
+                                                results.push(`Сұрақ ${i}: Дұрыс ✅`);
+                                            } else {
+                                                results.push(`Сұрақ ${i}: Қате ❌ (Дұрыс жауап: ${correctAnswers[questionName]})`);
+                                            }
+                                        } else {
+                                            results.push(`Сұрақ ${i}: Жауап берілмеген ❌ (Дұрыс жауап: ${correctAnswers[questionName]})`);
+                                        }
+                                    }
+
+                                    const resultDiv = document.getElementById('testResult');
+                                    resultDiv.innerHTML = `
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Нәтиже: ${score}/${total}</h5>
+                                                <div class="mt-3">
+                                                    ${results.map(result => `<p>${result}</p>`).join('')}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            </script>
+                        </div>
+                        <div class="tab-pane fade" id="tab4" role="tabpanel">
+                            <h3>Картамен практикалық жұмыс</h3>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div id="sidebar" style="width: 23%; height: 600px; float: left; overflow-y: auto; border-right: 2px solid #ccc; background-color: #f9f9f9; padding: 10px;">
+                                        <h2>Объекты</h2>
+                                        <div class="category" data-group="machineBuilding">Машина жасау кешені</div>
+                                        <ul class="factory-list" data-group="machineBuilding">
+                                            <li class="subcategory" data-group="agriculturalMachinery">Ауыл шаруашылығы машиналарын жасау</li>
+                                            <ul class="subcategory-list" data-group="agriculturalMachinery" style="display: none;">
+                                                <li data-group="agriculturalMachinery" data-index="0">Петропавл машина жасау зауыты</li>
+                                                <li data-group="agriculturalMachinery" data-index="1">Қостанай машина жасау зауыты</li>
+                                                <li data-group="agriculturalMachinery" data-index="2">Көкшетау машина жасау зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="transportMachinery">Көлік құрастыру және автомобиль жасау</li>
+                                            <ul class="subcategory-list" data-group="transportMachinery" style="display: none;">
+                                                <li data-group="transportMachinery" data-index="0">Қостанай автомобиль зауыты</li>
+                                                <li data-group="transportMachinery" data-index="1">Алматы автомобиль зауыты</li>
+                                                <li data-group="transportMachinery" data-index="2">Шымкент автомобиль зауыты</li>
+                                                <li data-group="transportMachinery" data-index="3">Астана автомобиль зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="miningMachinery">Тау-кен, мұнай-газ және металлургиялық жабдықтар</li>
+                                            <ul class="subcategory-list" data-group="miningMachinery" style="display: none;">
+                                                <li data-group="miningMachinery" data-index="0">Павлодар машина жасау зауыты</li>
+                                                <li data-group="miningMachinery" data-index="1">Өскемен машина жасау зауыты</li>
+                                                <li data-group="miningMachinery" data-index="2">Атырау машина жасау зауыты</li>
+                                                <li data-group="miningMachinery" data-index="3">Қарағанды машина жасау зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="electricalMachinery">Электротехникалық және теміржол жабдықтары</li>
+                                            <ul class="subcategory-list" data-group="electricalMachinery" style="display: none;">
+                                                <li data-group="electricalMachinery" data-index="0">Алматы электротехникалық зауыты</li>
+                                                <li data-group="electricalMachinery" data-index="1">Екібастұз электротехникалық зауыты</li>
+                                                <li data-group="electricalMachinery" data-index="2">Астана электротехникалық зауыты</li>
+                                                <li data-group="electricalMachinery" data-index="3">Шымкент электротехникалық зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="militaryMachinery">Әскери және ауыр машина жасау</li>
+                                            <ul class="subcategory-list" data-group="militaryMachinery" style="display: none;">
+                                                <li data-group="militaryMachinery" data-index="0">Петропавл әскери техника зауыты</li>
+                                                <li data-group="militaryMachinery" data-index="1">Талғар әскери техника зауыты</li>
+                                                <li data-group="militaryMachinery" data-index="2">Астана әскери техника зауыты</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div id="map2" style="height: 600px; width: 75%; float: right;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .category {
+                                cursor: pointer;
+                                margin: 5px 0;
+                                padding: 10px;
+                                background-color: #007bff;
+                                color: white;
+                                font-weight: bold;
+                                border-radius: 5px;
+                                text-align: center;
+                                font-size: 14px;
+                            }
+                            .category:hover {
+                                background-color: #0056b3;
+                            }
+                            .factory-list {
+                                list-style-type: none;
+                                padding: 0;
+                                margin: 0;
+                                display: none;
+                                background-color: #f1f1f1;
+                                border-radius: 5px;
+                                border: 1px solid #ccc;
+                            }
+                            .factory-list li {
+                                cursor: pointer;
+                                padding: 8px 10px;
+                                border-bottom: 1px solid #ddd;
+                            }
+                            .factory-list li:last-child {
+                                border-bottom: none;
+                            }
+                            .factory-list li:hover {
+                                background-color: #e9e9e9;
+                            }
+                            .subcategory {
+                                font-weight: bold;
+                                background-color: #e0e0e0;
+                                margin-top: 10px;
+                                padding: 8px 10px;
+                                border-top: 1px solid #ccc;
+                                border-bottom: 1px solid #ccc;
+                            }
+                        </style>
+                        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                        <script>
+                            // Данные объектов
+                            const locations = {
+                                agriculturalMachinery: [
+                                    { name: 'Петропавл машина жасау зауыты', coords: [54.8728, 69.1438] },
+                                    { name: 'Қостанай машина жасау зауыты', coords: [53.2144, 63.6246] },
+                                    { name: 'Көкшетау машина жасау зауыты', coords: [53.2833, 69.3833] }
+                                ],
+                                transportMachinery: [
+                                    { name: 'Қостанай автомобиль зауыты', coords: [53.2144, 63.6246] },
+                                    { name: 'Алматы автомобиль зауыты', coords: [43.2220, 76.8512] },
+                                    { name: 'Шымкент автомобиль зауыты', coords: [42.3000, 69.6000] },
+                                    { name: 'Астана автомобиль зауыты', coords: [51.1694, 71.4491] }
+                                ],
+                                miningMachinery: [
+                                    { name: 'Павлодар машина жасау зауыты', coords: [52.2833, 76.9667] },
+                                    { name: 'Өскемен машина жасау зауыты', coords: [49.9483, 82.6179] },
+                                    { name: 'Атырау машина жасау зауыты', coords: [47.1167, 51.8833] },
+                                    { name: 'Қарағанды машина жасау зауыты', coords: [49.8333, 73.1667] }
+                                ],
+                                electricalMachinery: [
+                                    { name: 'Алматы электротехникалық зауыты', coords: [43.2220, 76.8512] },
+                                    { name: 'Екібастұз электротехникалық зауыты', coords: [51.7297, 75.3267] },
+                                    { name: 'Астана электротехникалық зауыты', coords: [51.1694, 71.4491] },
+                                    { name: 'Шымкент электротехникалық зауыты', coords: [42.3000, 69.6000] }
+                                ],
+                                militaryMachinery: [
+                                    { name: 'Петропавл әскери техника зауыты', coords: [54.8728, 69.1438] },
+                                    { name: 'Талғар әскери техника зауыты', coords: [43.3000, 77.2333] },
+                                    { name: 'Астана әскери техника зауыты', coords: [51.1694, 71.4491] }
+                                ]
+                            };
+
+                            // Инициализация карты
+                            const map2 = L.map('map2').setView([48.0196, 66.9237], 5);
+                            // Добавление тайлов
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                Zoom: 18,
+                                attribution: '© OpenStreetMap contributors'
+                            }).addTo(map2);
+                            // Данные объектов
+                            const markersTab4 = {};
+                            Object.keys(locations).forEach(group => {
+                                markersTab4[group] = [];
+                                locations[group].forEach(location => {
+                                    const marker = L.marker(location.coords)
+                                        .bindPopup(`<strong>${location.name}</strong>`);
+                                    markersTab4[group].push(marker);
+                                });
+                            });
+                            document.querySelectorAll('.category').forEach(category => {
+                                category.addEventListener('click', () => {
+                                    const group = category.dataset.group;
+                                    const list = document.querySelector(`.factory-list[data-group="${group}"]`);
+                                    document.querySelectorAll('.factory-list').forEach(l => {
+                                        if (l !== list) {
+                                            l.style.display = 'none';
+                                        }
+                                    });
+                                    list.style.display = list.style.display === 'block' ? 'none' : 'block';
+                                    Object.keys(markersTab4).forEach(g => {
+                                        markersTab4[g].forEach(m => map2.removeLayer(m));
+                                    });
+                                    if (list.style.display === 'block') {
+                                        markersTab4[group].forEach(m => m.addTo(map2));
+                                    }
+                                    map2.setView([48.0196, 66.9237], 5, { animate: true, duration: 1.5 });
+                                });
+                            });
+                            document.querySelectorAll('.subcategory').forEach(subcategory => {
+                                subcategory.addEventListener('click', event => {
+                                    event.stopPropagation();
+                                    const group = event.target.dataset.group;
+                                    const subcategoryList = document.querySelector(`.subcategory-list[data-group="${group}"]`);
+                                    document.querySelectorAll('.subcategory-list').forEach(list => {
+                                        if (list !== subcategoryList) {
+                                            list.style.display = 'none';
+                                        }
+                                    });
+                                    subcategoryList.style.display = subcategoryList.style.display === 'block' ? 'none' : 'block';
+                                    Object.keys(markersTab4).forEach(g => {
+                                        markersTab4[g].forEach(m => map2.removeLayer(m));
+                                    });
+                                    if (subcategoryList.style.display === 'block') {
+                                        markersTab4[group].forEach(m => m.addTo(map2));
+                                    }
+                                    map2.setView([48.0196, 66.9237], 5, { animate: true, duration: 1.5 });
+                                });
+                            });
+                            document.querySelectorAll('.subcategory-list li').forEach(item => {
+                                item.addEventListener('click', event => {
+                                    event.stopPropagation();
+                                    const group = event.target.dataset.group;
+                                    const index = event.target.dataset.index;
+                                    Object.keys(markersTab4).forEach(g => {
+                                        markersTab4[g].forEach(m => map2.removeLayer(m));
+                                    });
+                                    if (group && index !== undefined) {
+                                        const marker = markersTab4[group][index];
+                                        marker.addTo(map2).openPopup();
+                                        map2.setView(marker.getLatLng(), 10, { animate: true, duration: 1.5 });
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer style="background-color: #1e1d3a; color: white; padding: 40px 20px; text-align: center;">
+        <div style="max-width: 800px; margin: auto;">
+            <h2 style="font-weight: bold;">GeoMapEd</h2>
+            <p style="margin-top: 0;">Білім беру бағдарламасы</p>
+      
+            <p style="margin: 30px 0 10px;">Біздің жаңартуларымызға жазылыңыз</p>
+      
+            <form style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+                <input type="email" placeholder="Сіздің электрондық поштаңыз"
+                       style="padding: 10px 20px; border: none; border-radius: 25px; min-width: 250px; outline: none;">
+                <button type="submit"
+                        style="padding: 10px 30px; background-color: #45d0d1; color: white; border: none; border-radius: 25px; cursor: pointer;">
+                    Жазылу
+                </button>
+            </form>
+      
+            <div style="font-size: 14px; color: #aaa; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="#" style="color: #aaa; text-decoration: none;">Курстар</a>
+                <span>|</span>
+                <a href="#" style="color: #aaa; text-decoration: none;">Құпиялық саясаты</a>
+                <span>|</span>
+                <a href="#" style="color: #aaa; text-decoration: none;">Пайдалану шарттары</a>
+            </div>
+      
+            <p style="margin-top: 20px; font-size: 13px; color: #aaa;">© 2025 GeoMapEd. Барлық құқықтар қорғалған</p>
+        </div>
+    </footer>
+</body>
+</html> 

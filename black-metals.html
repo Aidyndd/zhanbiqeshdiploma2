@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <title>Қазақстанның металлургия өнеркәсібі</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            justify-content: space-between;
+        }
+        .header .logo {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #1e1d3a;
+        }
+        .header nav {
+            display: flex;
+            gap: 30px;
+        }
+        .header nav a {
+            color: #222;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .header nav a:hover {
+            color: #45d0d1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .header .profile span {
+            font-weight: 500;
+        }
+        .nav-link {
+            cursor: pointer;
+        }
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link, .navbar-brand, .dropdown-item {
+            color: #333333 !important;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .nav-pills .nav-link {
+            text-align: left;
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        .nav-pills .nav-link:hover {
+            background-color: #0b5ed7;
+            color: #ffffff !important;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+            color: #ffffff !important;
+        }
+        .nav-pills {
+            background-color: #1e2a38;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="header">
+        <a href="map.html" class="logo" style="text-decoration: none; color: inherit;">GeoMapEd</a>
+        <nav>
+            <a href="#">Басты бет</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="course-section-1.html">Курстар</a>
+            <a href="#">Блог</a>
+            <a href="#">Біз туралы</a>
+        </nav>
+        <div class="profile">
+            <img src="x.jpg" alt="Профиль">
+            <span>Жанбике</span>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center;">
+                    <h1 style="font-weight: 600;">Қазақстанның металлургия өнеркәсібі</h1>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="pill" data-bs-target="#tab1" type="button" role="tab">
+                            Теориялық бөлім
+                        </button>
+                        <button class="nav-link" id="tab2-tab" data-bs-toggle="pill" data-bs-target="#tab2" type="button" role="tab">
+                            Практикалық тапсырмалар
+                        </button>
+                        <button class="nav-link" id="tab3-tab" data-bs-toggle="pill" data-bs-target="#tab3" type="button" role="tab">
+                            Тест
+                        </button>
+                        <button class="nav-link" id="tab4-tab" data-bs-toggle="pill" data-bs-target="#tab4" type="button" role="tab">
+                            Картамен практикалық жұмыс
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                            <h3>Тарау 01 : Қазақстанның металлургия өнеркәсібі</h3>
+                            
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/RpKyAyJFquo" title="YouTube video" allowfullscreen></iframe>
+                            </div>
+                    
+                            <h3>Тақырыпқа кіріспе</h3>
+                            <p>Қазақстандағы металлургия өнеркәсібі – елдің индустриялық-инновациялық дамуының негізін құрайтын жетекші салалардың бірі. Ол табиғи ресурстарға бай еліміздің кен байлығын игеру, металл алу, байыту және қайта өңдеу жұмыстарымен тікелей байланысты. Металлургия өнеркәсібі екі негізгі бағытқа бөлінеді: қара металлургия және түсті металлургия.</p>
+
+                            <h4>Қара металлургия</h4>
+                            <p>Қара металлургия – темір және оның қосалқы элементтерінен (марганец, хром, никель) шойын мен болат өндірумен айналысатын сала. Қазақстанда қара металлургияның дамуы негізінен Қостанай облысындағы Соколов-Сарыбай кен байыту өндірістік бірлестігіне (ССКӨБ) байланысты. Бұл кәсіпорын еліміздегі темір кенін өндіруші ірі орталықтардың бірі. Сонымен қатар, АрселорМиттал Теміртау комбинаты – Қазақстандағы ең ірі болат өндіруші кәсіпорын, толық металлургиялық циклмен жұмыс істейді: темір кенін шойынға, одан әрі болатқа айналдырады.</p>
+
+                            <p>Марганец пен хром өндіру бойынша Ақтөбе облысы жетекші орында тұр. Мұнда хромиттің ірі қоры шоғырланған және Қазхром ТҰК кәсіпорны жұмыс істейді. Жезқазған мен Қарағанды облыстарында металлургиялық кокс өндіру дамыған, бұл шойын өндірудің маңызды компоненті болып табылады.</p>
+
+                            <h4>Түсті металлургия</h4>
+                            <p>Түсті металлургия – мырыш, қорғасын, мыс, алюминий, титан, алтын, күміс және сирек кездесетін металдарды өндірумен айналысады. Бұл сала Қазақстанның Шығыс, Орталық және Оңтүстік өңірлерінде кеңінен дамыған.</p>
+
+                            <p>Мыс өндіру – еліміздегі жетекші бағыттардың бірі. Қазақмыс корпорациясы Балқаш, Жезқазған өңірлерінде кен өндіруден бастап, мыс балқыту мен тазалауға дейінгі толық циклді жүзеге асырады. Балқаш мыс балқыту зауыты және Жезқазған металлургия зауыты – осы бағыттағы басты кәсіпорындар.</p>
+
+                            <p>Қорғасын мен мырыш өндірісі негізінен Өскемен қаласында орналасқан. Мұндағы Kazzinc кәсіпорны – әлемдік деңгейдегі металл өңдеу орталығы. Сонымен қатар, Текелі мен Риддер қалаларында да осы салада кәсіпорындар жұмыс істейді.</p>
+
+                            <p>Алюминий өндіру Павлодар облысында шоғырланған. Мұнда Павлодар алюминий зауыты мен Қазақстан электролиз зауыты жұмыс істейді. Олар боксит кенінен алюминий оксидін алып, электролиз арқылы таза алюминий өндіреді.</p>
+
+                            <p>Алтын мен күміс өндірісі де Қазақстанда жоғары деңгейде дамыған. Ақсу, Бақыршық, Ақтөбе, Степногорск және Жамбыл облыстарындағы кен орындары алтын өндірісінің негізгі ошақтары болып саналады. Бұл салада RG Gold, Kazzinc, Altyntau Resources сияқты ірі компаниялар жұмыс істейді.</p>
+
+                            <p>Металлургия өнеркәсібі – энергияны көп қажет ететін, экологиялық жүктемесі жоғары сала. Сондықтан кәсіпорындардың көбі энергия көзіне және шикізат базасына жақын орналастырылады. Металлургия саласында физикалық-географиялық орналасу, ресурсқа жақындық, көліктік қолжетімділік және технологиялық инфрақұрылым шешуші рөл атқарады.</p>
+
+                            <p>Қазақстан металлургиясы экспортқа бағытталған сала болып саналады. Мыс, феррохром, болат, алюминий және мырыш өнімдері Ресей, Қытай, ЕО елдеріне экспортталады. Сонымен қатар, бұл сала жоғары білікті кадрларды қажет етеді, сондықтан металлургиялық technicalкумдар мен университеттермен тығыз байланыста жұмыс істейді.</p>
+
+                            <p>Металлургия өнеркәсібі – Қазақстан экономикасының локомотиві. Ол шикізатты тиімді пайдалану арқылы елдің ішкі қажеттілігін ғана емес, халықаралық нарықтағы сұранысты да қамтамасыз етіп отыр. Заманауи өндіріс технологияларын енгізу, экологиялық стандарттарды сақтау және инновациялық өнімдер шығару – саланың алдағы даму бағыттарының негізі.</p>
+
+                            <p>Қазақстанда қара металлургияның мол қорына ие мемлекет. Елімізде келесі ірі кен орындары бар:</p>
+                            <ul>
+                                <li>Соколов-Сарбай кен орны (Теміртау)</li>
+                                <li>Лисаков кен орны (Қостанай облысы)</li>
+                                <li>Атасу кен орны (Қарағанды облысы)</li>
+                                <li>Қашар кен орны (Ақтөбе облысы)</li>
+                            </ul>
+
+                            <p>Қара металлургияның өндірісі мен өңдеуі келесі ірі орталықтарда жүргізіледі:</p>
+                            <ul>
+                                <li>Теміртау металлургия комбинаты</li>
+                                <li>АрселорМиттал Темиртау</li>
+                                <li>Қазақмыс</li>
+                            </ul>
+
+                            <p>Қара металлургияның өндірісі келесі негізгі кезеңдерден тұрады:</p>
+                            <ol>
+                                <li>Кен өндіру</li>
+                                <li>Байыту</li>
+                                <li>Металлургиялық өңдеу</li>
+                                <li>Қорытпаларды дайындау</li>
+                                <li>Соңғы өнімдерді шығару</li>
+                            </ol>
+
+                            <p>Қазақстанда қара металлургияның өндірісі үшін қолданылатын негізгі технологиялар:</p>
+                            <ul>
+                                <li>Домен пештері</li>
+                                <li>Конвертерлер</li>
+                                <li>Электр пештері</li>
+                                <li>Үздіксіз құйма</li>
+                            </ul>
+
+                            <div class="text-end mt-4">
+                                <a href="#tab2" class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#tab2">Жалғастыру</a>
+                            </div>
+                            <br><br>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                            <h3>Практикалық тапсырмалар</h3>
+
+                            <p><b>1-тапсырма. Металлургия кәсіпорындарының орналасқан жерін анықтау.</b> Осы тапсырмада сізге әрбір кәсіпорынның дұрыс орналасқан жерін таңдау қажет.</p>
+                            
+                            <form id="companyForm" class="mt-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <h5>1. «АрселорМиттал Теміртау» АҚ</h5>
+                                            <select class="form-select" id="company1">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Қарағанды">Қарағанды</option>
+                                                <option value="ШҚО">ШҚО</option>
+                                                <option value="Алматы">Алматы</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>2. «Қазферротитан» ЖШС</h5>
+                                            <select class="form-select" id="company2">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Талдықорған">Талдықорған</option>
+                                                <option value="Павлодар">Павлодар</option>
+                                                <option value="Атырау">Атырау</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>3. «Қазақстан электролиз зауыты» АҚ</h5>
+                                            <select class="form-select" id="company3">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Павлодар">Павлодар</option>
+                                                <option value="Қарағанды">Қарағанды</option>
+                                                <option value="Ақтау">Ақтау</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>4. «KSP Steel» ЖШС</h5>
+                                            <select class="form-select" id="company4">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Павлодар">Павлодар</option>
+                                                <option value="Астана">Астана</option>
+                                                <option value="Көкшетау">Көкшетау</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>5. ТНК Казхром</h5>
+                                            <select class="form-select" id="company5">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Ақтөбе">Ақтөбе</option>
+                                                <option value="Тараз">Тараз</option>
+                                                <option value="Шымкент">Шымкент</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>6. Қазақмыс корпорациясы</h5>
+                                            <select class="form-select" id="company6">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Жезқазған">Жезқазған</option>
+                                                <option value="Астана">Астана</option>
+                                                <option value="Қостанай">Қостанай</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>7. Қазминералс</h5>
+                                            <select class="form-select" id="company7">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="ШҚО">ШҚО</option>
+                                                <option value="Ақтау">Ақтау</option>
+                                                <option value="Алматы">Алматы</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>8. Қазцинк</h5>
+                                            <select class="form-select" id="company8">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Өскемен">Өскемен</option>
+                                                <option value="Қызылорда">Қызылорда</option>
+                                                <option value="Петропавл">Петропавл</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>9. КазФерроСплав</h5>
+                                            <select class="form-select" id="company9">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Қарағанды">Қарағанды</option>
+                                                <option value="Алматы">Алматы</option>
+                                                <option value="Атырау">Атырау</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>10. КазТитан</h5>
+                                            <select class="form-select" id="company10">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Талдықорған">Талдықорған</option>
+                                                <option value="Ақтөбе">Ақтөбе</option>
+                                                <option value="Атырау">Атырау</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="button" class="btn btn-primary" onclick="checkCompanyLocations()">Тапсырманы аяқтау</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div id="companyResult" class="mt-4"></div>
+
+                            <p><b>2-тапсырма. Металлургия кәсіпорындарының орналасқан жерін картада көрсету.</b></p>
+
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div id="map" style="height: 500px; width: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <p><b>3-тапсырма. Төмендегі мәтінді оқып, бос орындарға тиісті сөздерді қойыңыз.</b></p>
+
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <p>Қазақстанда металлургия өнеркәсібі – ел экономикасының негізгі және стратегиялық салаларының бірі. Бұл сала табиғи ресурстардың, атап айтқанда, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank1" placeholder="Жауап"> 
+                                        кені және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank2" placeholder="Жауап"> 
+                                        металдар қорының мол болуына негізделіп дамыған.
+                                    </p>
+                                    <p>Металлургия екіге бөлінеді: 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank3" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank4" placeholder="Жауап"> 
+                                        металлургия. Қара металлургия негізінен 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank5" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank6" placeholder="Жауап"> 
+                                        өндірісімен айналысады, ал түсті металлургияға 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank7" placeholder="Жауап">, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank8" placeholder="Жауап">, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank9" placeholder="Жауап"> 
+                                        сияқты металдардың өндірісі жатады.
+                                    </p>
+                                    <p>Ірі металлургиялық кәсіпорындар негізінен 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank10" placeholder="Жауап">, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank11" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank12" placeholder="Жауап"> 
+                                        облыстарында шоғырланған. Бұл аймақтарда кен орындарына жақын орналасу, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 200px;" id="blank13" placeholder="Жауап"> 
+                                        және жергілікті еңбек ресурстары өндіріс үшін қолайлы жағдай жасайды.
+                                    </p>
+                                    <p>Металлургия өнімдері машина жасау, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 100px;" id="blank14" placeholder="Жауап">, 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank15" placeholder="Жауап"> 
+                                        салаларында кеңінен қолданылады.
+                                    </p>
+
+                                    <div class="text-center mt-4">
+                                        <button type="button" class="btn btn-primary" onclick="checkBlanks()">Тапсырманы аяқтау</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="blanksResult" class="mt-4"></div>
+
+                            <div class="text-end mt-4">
+                                <a href="#tab3" class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#tab3">Жалғастыру</a>
+                            </div>
+                            <br><br>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                            <h3>Тест</h3>
+                            
+                            <form id="testForm" onsubmit="checkAnswers(event)">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <h5>1. Қазақстанда металлургия өнеркәсібі қай салаларға жатады?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1a" value="A">
+                                                <label class="form-check-label" for="q1a">Ауыл шаруашылығы мен энергетика</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1b" value="B">
+                                                <label class="form-check-label" for="q1b">Жеңіл өнеркәсіп пен құрылыс</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1c" value="C">
+                                                <label class="form-check-label" for="q1c">Ауыр және өңдеуші өнеркәсіп</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q1" id="q1d" value="D">
+                                                <label class="form-check-label" for="q1d">Транспорт және байланыс</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>2. Қара металлургия нені өңдейді?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2a" value="A">
+                                                <label class="form-check-label" for="q2a">Алтын мен күміс</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2b" value="B">
+                                                <label class="form-check-label" for="q2b">Темір мен марганец</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2c" value="C">
+                                                <label class="form-check-label" for="q2c">Мыс пен қорғасын</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q2" id="q2d" value="D">
+                                                <label class="form-check-label" for="q2d">Уран мен бериллий</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>3. Түсті металлургияға жататын металлды көрсетіңіз:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3a" value="A">
+                                                <label class="form-check-label" for="q3a">Темір</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3b" value="B">
+                                                <label class="form-check-label" for="q3b">Болат</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3c" value="C">
+                                                <label class="form-check-label" for="q3c">Алюминий</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q3" id="q3d" value="D">
+                                                <label class="form-check-label" for="q3d">Шойын</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>4. Қазақстанда ең ірі металлургия орталығы орналасқан қала:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4a" value="A">
+                                                <label class="form-check-label" for="q4a">Астана</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4b" value="B">
+                                                <label class="form-check-label" for="q4b">Қарағанды</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4c" value="C">
+                                                <label class="form-check-label" for="q4c">Тараз</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q4" id="q4d" value="D">
+                                                <label class="form-check-label" for="q4d">Көкшетау</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>5. Шығыс Қазақстан облысында өндірілетін негізгі түсті металдар:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5a" value="A">
+                                                <label class="form-check-label" for="q5a">Темір, никель</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5b" value="B">
+                                                <label class="form-check-label" for="q5b">Мыс, қорғасын, мырыш</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5c" value="C">
+                                                <label class="form-check-label" for="q5c">Уран, алтын</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q5" id="q5d" value="D">
+                                                <label class="form-check-label" for="q5d">Көмір, мұнай</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>6. Металлургия саласы үшін басты табиғи ресурс:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6a" value="A">
+                                                <label class="form-check-label" for="q6a">Су ресурстары</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6b" value="B">
+                                                <label class="form-check-label" for="q6b">Қара және түсті металл кендері</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6c" value="C">
+                                                <label class="form-check-label" for="q6c">Орман байлығы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q6" id="q6d" value="D">
+                                                <label class="form-check-label" for="q6d">Мұнай және газ</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>7. Металлургия өнімдері ең көп қолданылатын сала:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7a" value="A">
+                                                <label class="form-check-label" for="q7a">Балық шаруашылығы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7b" value="B">
+                                                <label class="form-check-label" for="q7b">Медицина</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7c" value="C">
+                                                <label class="form-check-label" for="q7c">Машина жасау</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q7" id="q7d" value="D">
+                                                <label class="form-check-label" for="q7d">Туризм</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>8. Темір рудасы ең көп өндірілетін облыс:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8a" value="A">
+                                                <label class="form-check-label" for="q8a">Жамбыл</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8b" value="B">
+                                                <label class="form-check-label" for="q8b">Қызылорда</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8c" value="C">
+                                                <label class="form-check-label" for="q8c">Қостанай</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q8" id="q8d" value="D">
+                                                <label class="form-check-label" for="q8d">Түркістан</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>9. Металлургия өнімдері қай елдерге экспортталады?</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9a" value="A">
+                                                <label class="form-check-label" for="q9a">Тек ТМД елдеріне</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9b" value="B">
+                                                <label class="form-check-label" for="q9b">Африка мен Латын Америкасына</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9c" value="C">
+                                                <label class="form-check-label" for="q9c">Әлемнің көптеген елдеріне</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q9" id="q9d" value="D">
+                                                <label class="form-check-label" for="q9d">Тек Қытайға</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>10. Қазақстан металлургиясының даму факторларының бірі:</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10a" value="A">
+                                                <label class="form-check-label" for="q10a">Дала зонасының кең болуы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10b" value="B">
+                                                <label class="form-check-label" for="q10b">Халық санының артуы</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10c" value="C">
+                                                <label class="form-check-label" for="q10c">Табиғи ресурстардың мол қоры</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="q10" id="q10d" value="D">
+                                                <label class="form-check-label" for="q10d">Туристік әлеуеттің жоғары болуы</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary">Тестті аяқтау</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div id="testResult" class="mt-4"></div>
+
+                            <div class="text-end mt-4">
+                                <a href="#tab1" class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#tab1">Басты бетке оралу</a>
+                            </div>
+                            <br><br>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                            <h3>Картамен практикалық жұмыс</h3>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div id="sidebar" style="width: 23%; height: 600px; float: left; overflow-y: auto; border-right: 2px solid #ccc; background-color: #f9f9f9; padding: 10px;">
+                                        <h2>Объекты</h2>
+                                        <div class="category" data-group="metallurgy">Металлургия</div>
+                                        <ul class="factory-list" data-group="metallurgy">
+                                            <li class="subcategory" data-group="blackMetallurgy">Қара металлургия</li>
+                                            <ul class="subcategory-list" data-group="blackMetallurgy" style="display: none;">
+                                                <li data-group="blackMetallurgy" data-index="0">Теміртау металлургия комбинаты</li>
+                                                <li data-group="blackMetallurgy" data-index="1">Павлодар металлургия зауыты</li>
+                                                <li data-group="blackMetallurgy" data-index="2">Шығыс Қазақстан металлургия зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="nonFerrousMetallurgy">Түсті металлургия</li>
+                                            <ul class="subcategory-list" data-group="nonFerrousMetallurgy" style="display: none;">
+                                                <li data-group="nonFerrousMetallurgy" data-index="0">Өскемен металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="1">Риддер металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="2">Ақсу металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="3">Хромтау металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="4">Балқаш металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="5">Жезқазған металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="6">Шетпе металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="7">Атырау металлургия зауыты</li>
+                                                <li data-group="nonFerrousMetallurgy" data-index="8">Шымкент металлургия зауыты</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div id="map2" style="height: 600px; width: 75%; float: right;"></div>
+                                </div>
+                            </div>
+
+                            <style>
+                                .category {
+                                    cursor: pointer;
+                                    margin: 5px 0;
+                                    padding: 10px;
+                                    background-color: #007bff;
+                                    color: white;
+                                    font-weight: bold;
+                                    border-radius: 5px;
+                                    text-align: center;
+                                    font-size: 14px;
+                                }
+                                .category:hover {
+                                    background-color: #0056b3;
+                                }
+                                .factory-list {
+                                    list-style-type: none;
+                                    padding: 0;
+                                    margin: 0;
+                                    display: none;
+                                    background-color: #f1f1f1;
+                                    border-radius: 5px;
+                                    border: 1px solid #ccc;
+                                }
+                                .factory-list li {
+                                    cursor: pointer;
+                                    padding: 8px 10px;
+                                    border-bottom: 1px solid #ddd;
+                                }
+                                .factory-list li:last-child {
+                                    border-bottom: none;
+                                }
+                                .factory-list li:hover {
+                                    background-color: #e9e9e9;
+                                }
+                                .subcategory {
+                                    font-weight: bold;
+                                    background-color: #e0e0e0;
+                                    margin-top: 10px;
+                                    padding: 8px 10px;
+                                    border-top: 1px solid #ccc;
+                                    border-bottom: 1px solid #ccc;
+                                }
+                            </style>
+
+                            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                            <script>
+                                // Инициализация карты
+                                const map2 = L.map('map2').setView([48.0196, 66.9237], 5);
+
+                                // Добавление тайлов
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    Zoom: 18,
+                                    attribution: '© OpenStreetMap contributors'
+                                }).addTo(map2);
+
+                                // Данные объектов
+                                const locations = {
+                                    blackMetallurgy: [
+                                        { name: "Теміртау металлургия комбинаты", coords: [50.054, 72.964] },
+                                        { name: "Павлодар металлургия зауыты", coords: [52.297, 76.957] },
+                                        { name: "Шығыс Қазақстан металлургия зауыты", coords: [49.948, 82.628] }
+                                    ],
+                                    nonFerrousMetallurgy: [
+                                        { name: "Өскемен металлургия зауыты", coords: [49.948, 82.628] },
+                                        { name: "Риддер металлургия зауыты", coords: [50.344, 83.512] },
+                                        { name: "Ақсу металлургия зауыты", coords: [52.040, 76.927] },
+                                        { name: "Хромтау металлургия зауыты", coords: [50.250, 58.434] },
+                                        { name: "Балқаш металлургия зауыты", coords: [46.848, 74.995] },
+                                        { name: "Жезқазған металлургия зауыты", coords: [47.783, 67.766] },
+                                        { name: "Шетпе металлургия зауыты", coords: [44.166, 52.116] },
+                                        { name: "Атырау металлургия зауыты", coords: [47.123, 51.925] },
+                                        { name: "Шымкент металлургия зауыты", coords: [42.300, 69.600] }
+                                    ]
+                                };
+
+                                const markers = {};
+
+                                // Создание маркеров по группам
+                                Object.keys(locations).forEach(group => {
+                                    markers[group] = [];
+                                    locations[group].forEach(location => {
+                                        const marker = L.marker(location.coords)
+                                            .bindPopup(`<strong>${location.name}</strong>`);
+                                        markers[group].push(marker);
+                                    });
+                                });
+
+                                // Раскрытие категорий и отображение маркеров группы
+                                document.querySelectorAll('.category').forEach(category => {
+                                    category.addEventListener('click', () => {
+                                        const group = category.dataset.group;
+                                        const list = document.querySelector(`.factory-list[data-group="${group}"]`);
+                                        
+                                        // Скрываем все списки категорий
+                                        document.querySelectorAll('.factory-list').forEach(l => {
+                                            if (l !== list) {
+                                                l.style.display = 'none';
+                                            }
+                                        });
+                                        
+                                        // Меняем отображение списка
+                                        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+
+                                        // Удаляем все маркеры
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+
+                                        // Если список показан, показываем маркеры
+                                        if (list.style.display === 'block') {
+                                            markers[group].forEach(m => m.addTo(map2));
+                                        }
+
+                                        // Возвращаем масштаб карты
+                                        map2.setView([48.0196, 66.9237], 5, { animate: true, duration: 1.5 });
+                                    });
+                                });
+
+                                // Обработчик для подкатегорий
+                                document.querySelectorAll('.subcategory').forEach(subcategory => {
+                                    subcategory.addEventListener('click', event => {
+                                        event.stopPropagation();
+                                        const group = event.target.dataset.group;
+                                        const subcategoryList = document.querySelector(`.subcategory-list[data-group="${group}"]`);
+                                        
+                                        // Скрываем все списки подкатегорий
+                                        document.querySelectorAll('.subcategory-list').forEach(list => {
+                                            if (list !== subcategoryList) {
+                                                list.style.display = 'none';
+                                            }
+                                        });
+                                        
+                                        // Показываем/скрываем выбранный список
+                                        subcategoryList.style.display = subcategoryList.style.display === 'block' ? 'none' : 'block';
+
+                                        // Удаляем все маркеры
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+
+                                        // Если список показан, показываем маркеры
+                                        if (subcategoryList.style.display === 'block') {
+                                            markers[group].forEach(m => m.addTo(map2));
+                                        }
+
+                                        // Возвращаем масштаб карты
+                                        map2.setView([48.0196, 66.9237], 5, { animate: true, duration: 1.5 });
+                                    });
+                                });
+
+                                // Обработчик для заводов
+                                document.querySelectorAll('.subcategory-list li').forEach(item => {
+                                    item.addEventListener('click', event => {
+                                        event.stopPropagation();
+                                        const group = event.target.dataset.group;
+                                        const index = event.target.dataset.index;
+
+                                        // Удаляем все маркеры
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+
+                                        if (group && index !== undefined) {
+                                            // Показать один маркер с плавным зумом
+                                            const marker = markers[group][index];
+                                            marker.addTo(map2).openPopup();
+                                            map2.setView(marker.getLatLng(), 10, { animate: true, duration: 1.5 });
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test answers
+        const correctAnswers = {
+            q1: 'C',
+            q2: 'B',
+            q3: 'C',
+            q4: 'B',
+            q5: 'B',
+            q6: 'B',
+            q7: 'C',
+            q8: 'C',
+            q9: 'C',
+            q10: 'C'
+        };
+
+        // Initialize map for task 2
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize the main map for task 2
+            const map = L.map('map').setView([48.0, 67.0], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const locations = [
+                { name: 'Шығыс Қазақстан облысы (Өскемен, Риддер)', lat: 49.9483, lng: 82.6289 },
+                { name: 'Павлодар облысы', lat: 52.2833, lng: 76.9667 },
+                { name: 'Шығыс Қазақстан облысы (Өскемен)', lat: 49.9483, lng: 82.6289 },
+                { name: 'Павлодар', lat: 52.2833, lng: 76.9667 },
+                { name: 'Қарағанды облысы', lat: 49.8333, lng: 73.1667 },
+                { name: 'Қостанай облысы', lat: 53.1667, lng: 63.5833 },
+                { name: 'Ақтөбе облысы', lat: 50.2833, lng: 57.1667 }
+            ];
+
+            // Create custom icons for task 2
+            const greenIcon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            const redIcon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            // Keep track of markers for task 2
+            let correctMarkers = [];
+            let incorrectMarker = null;
+
+            // Add click handler to map for task 2
+            map.on('click', function(e) {
+                const clickedLat = e.latlng.lat;
+                const clickedLng = e.latlng.lng;
+                
+                // Remove previous incorrect marker if it exists
+                if (incorrectMarker) {
+                    map.removeLayer(incorrectMarker);
+                    incorrectMarker = null;
+                }
+
+                // Check if click is near any location
+                let found = false;
+                locations.forEach(location => {
+                    const distance = map.distance(
+                        [clickedLat, clickedLng],
+                        [location.lat, location.lng]
+                    );
+                    
+                    // If click is within 100km of a location
+                    if (distance < 100000) {
+                        // Check if this location is already marked
+                        const alreadyMarked = correctMarkers.some(marker => 
+                            marker.getLatLng().lat === location.lat && 
+                            marker.getLatLng().lng === location.lng
+                        );
+
+                        if (!alreadyMarked) {
+                            const marker = L.marker([location.lat, location.lng], {icon: greenIcon})
+                                .bindPopup(location.name)
+                                .addTo(map);
+                            correctMarkers.push(marker);
+                        }
+                        found = true;
+                    }
+                });
+
+                // If no location found nearby, add red marker
+                if (!found) {
+                    incorrectMarker = L.marker([clickedLat, clickedLng], {icon: redIcon})
+                        .bindPopup('Қате орналасқан жер')
+                        .addTo(map);
+                }
+            });
+        });
+
+        function checkAnswers(event) {
+            event.preventDefault();
+            let score = 0;
+            let total = Object.keys(correctAnswers).length;
+            let results = [];
+
+            for (let i = 1; i <= total; i++) {
+                const questionName = `q${i}`;
+                const selectedAnswer = document.querySelector(`input[name="${questionName}"]:checked`);
+                
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === correctAnswers[questionName]) {
+                        score++;
+                        results.push(`Сұрақ ${i}: Дұрыс ✓`);
+                    } else {
+                        results.push(`Сұрақ ${i}: Қате ✗ (Дұрыс жауап: ${correctAnswers[questionName]})`);
+                    }
+                } else {
+                    results.push(`Сұрақ ${i}: Жауап берілмеген`);
+                }
+            }
+
+            const percentage = (score / total) * 100;
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.innerHTML = `
+                <div class="alert ${percentage >= 70 ? 'alert-success' : 'alert-danger'}">
+                    <h4>Тест нәтижесі: ${score}/${total} (${percentage.toFixed(1)}%)</h4>
+                    <hr>
+                    <p>${results.join('<br>')}</p>
+                </div>
+            `;
+        }
+
+        // Company locations
+        const correctCompanyLocations = {
+            company1: 'Қарағанды',
+            company2: 'Талдықорған',
+            company3: 'Павлодар',
+            company4: 'Павлодар',
+            company5: 'Ақтөбе',
+            company6: 'Жезқазған',
+            company7: 'ШҚО',
+            company8: 'Өскемен',
+            company9: 'Қарағанды',
+            company10: 'Талдықорған'
+        };
+
+        function checkCompanyLocations() {
+            let score = 0;
+            let total = Object.keys(correctCompanyLocations).length;
+            let results = [];
+
+            for (let i = 1; i <= total; i++) {
+                const selectId = `company${i}`;
+                const selectedValue = document.getElementById(selectId).value;
+                
+                if (selectedValue) {
+                    if (selectedValue === correctCompanyLocations[selectId]) {
+                        score++;
+                        results.push(`Сұрақ ${i}: Дұрыс ✓`);
+                    } else {
+                        results.push(`Сұрақ ${i}: Қате ✗ (Дұрыс жауап: ${correctCompanyLocations[selectId]})`);
+                    }
+                } else {
+                    results.push(`Сұрақ ${i}: Жауап берілмеген`);
+                }
+            }
+
+            const percentage = (score / total) * 100;
+            const resultDiv = document.getElementById('companyResult');
+            resultDiv.innerHTML = `
+                <div class="alert ${percentage >= 70 ? 'alert-success' : 'alert-danger'}">
+                    <h4>Тест нәтижесі: ${score}/${total} (${percentage.toFixed(1)}%)</h4>
+                    <hr>
+                    <p>${results.join('<br>')}</p>
+                </div>
+            `;
+        }
+
+        // Fill in the blanks answers
+        const correctBlanks = {
+            blank1: 'темір',
+            blank2: 'түсті',
+            blank3: 'қара',
+            blank4: 'түсті',
+            blank5: 'шойын',
+            blank6: 'болат',
+            blank7: 'мыс',
+            blank8: 'қорғасын',
+            blank9: 'мырыш',
+            blank10: 'Қарағанды',
+            blank11: 'Шығыс Қазақстан',
+            blank12: 'Павлодар',
+            blank13: 'көлік инфрақұрылымының дамуы',
+            blank14: 'құрылыс',
+            blank15: 'әскери өндіріс'
+        };
+
+        function checkBlanks() {
+            let score = 0;
+            let total = Object.keys(correctBlanks).length;
+            let results = [];
+
+            for (let i = 1; i <= total; i++) {
+                const blankId = `blank${i}`;
+                const userAnswer = document.getElementById(blankId).value.toLowerCase().trim();
+                const correctAnswer = correctBlanks[blankId].toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    results.push(`Бос орын ${i}: Дұрыс ✓`);
+                    document.getElementById(blankId).style.backgroundColor = '#d4edda';
+                    document.getElementById(blankId).classList.remove('is-invalid');
+                } else {
+                    results.push(`Бос орын ${i}: Қате ✗ (Дұрыс жауап: ${correctBlanks[blankId]})`);
+                    document.getElementById(blankId).style.backgroundColor = '#f8d7da';
+                    document.getElementById(blankId).classList.remove('is-valid');
+                }
+            }
+
+            const percentage = (score / total) * 100;
+            const resultDiv = document.getElementById('blanksResult');
+            resultDiv.innerHTML = `
+                <div class="alert ${percentage >= 70 ? 'alert-success' : 'alert-danger'}">
+                    <h4>Тапсырма нәтижесі: ${score}/${total} (${percentage.toFixed(1)}%)</h4>
+                    <hr>
+                    <p>${results.join('<br>')}</p>
+                </div>
+            `;
+        }
+    </script>
+
+    <footer style="background-color: #1e1d3a; color: white; padding: 40px 20px; text-align: center;">
+        <div style="max-width: 800px; margin: auto;">
+          <h2 style="font-weight: bold;">GeoMapEd</h2>
+          <p style="margin-top: 0;">Білім беру бағдарламасы</p>
+      
+          <p style="margin: 30px 0 10px;">Біздің жаңартуларымызға жазылыңыз</p>
+      
+          <form style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+            <input type="email" placeholder="Сіздің электрондық поштаңыз"
+                   style="padding: 10px 20px; border: none; border-radius: 25px; min-width: 250px; outline: none;">
+            <button type="submit"
+                    style="padding: 10px 30px; background-color: #45d0d1; color: white; border: none; border-radius: 25px; cursor: pointer;">
+              Жазылу
+            </button>
+          </form>
+      
+          <div style="font-size: 14px; color: #aaa; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="#" style="color: #aaa; text-decoration: none;">Курстар</a>
+            <span>|</span>
+            <a href="#" style="color: #aaa; text-decoration: none;">Құпиялық саясаты</a>
+            <span>|</span>
+            <a href="#" style="color: #aaa; text-decoration: none;">Пайдалану шарттары</a>
+          </div>
+      
+          <p style="margin-top: 20px; font-size: 13px; color: #aaa;">© 2025 GeoMapEd. Барлық құқықтар қорғалған</p>
+        </div>
+      </footer>
+</body>
+</html> 

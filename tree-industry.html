@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <title>Ағаш өңдеу өнеркәсібі</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            height: 70px;
+            justify-content: space-between;
+        }
+        .header .logo {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #1e1d3a;
+        }
+        .header nav {
+            display: flex;
+            gap: 30px;
+        }
+        .header nav a {
+            color: #222;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .header nav a:hover {
+            color: #45d0d1;
+        }
+        .header .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .profile img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .header .profile span {
+            font-weight: 500;
+        }
+        .nav-link {
+            cursor: pointer;
+        }
+        .navbar-custom {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link, .navbar-brand, .dropdown-item {
+            color: #333333 !important;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .nav-pills .nav-link {
+            text-align: left;
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        .nav-pills .nav-link:hover {
+            background-color: #0b5ed7;
+            color: #ffffff !important;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+            color: #ffffff !important;
+        }
+        .nav-pills {
+            background-color: #1e2a38;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="map.html" class="logo" style="text-decoration: none; color: inherit;">GeoMapEd</a>
+        <nav>
+            <a href="#">Басты бет</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="course-section-1.html">Курстар</a>
+            <a href="#">Блог</a>
+            <a href="#">Біз туралы</a>
+        </nav>
+        <div class="profile">
+            <img src="x.jpg" alt="Профиль">
+            <span>Жанбике</span>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center;">
+                    <h1 style="font-weight: 600;">Ағаш өңдеу өнеркәсібі</h1>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="tab1-tab" data-bs-toggle="pill" data-bs-target="#tab1" type="button" role="tab">
+                            Теориялық бөлім
+                        </button>
+                        <button class="nav-link" id="tab2-tab" data-bs-toggle="pill" data-bs-target="#tab2" type="button" role="tab">
+                            Практикалық тапсырмалар
+                        </button>
+                        <button class="nav-link" id="tab3-tab" data-bs-toggle="pill" data-bs-target="#tab3" type="button" role="tab">
+                            Тест
+                        </button>
+                        <button class="nav-link" id="tab4-tab" data-bs-toggle="pill" data-bs-target="#tab4" type="button" role="tab">
+                            Картамен практикалық жұмыс
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                            <h3>Теориялық бөлім</h3>
+                            
+                            <div class="ratio ratio-16x9 mb-3">
+                                <iframe src="https://www.youtube.com/embed/_Q_gI4VTCIM" title="YouTube video" allowfullscreen></iframe>
+                            </div>
+
+                            <h3>Қазақстандағы ағаш өңдеу және құрылыс материалдары өнеркәсібі</h3>
+                            <p>Ағаш өңдеу және құрылыс материалдары өнеркәсібі — Қазақстанның құрылыс, тұрғын үй және өнеркәсіп секторының дамуына тікелей ықпал ететін маңызды өндірістік сала. Бұл сала құрылыс саласында кеңінен қолданылатын материалдарды өндірумен қатар, халықтың күнделікті өміріне қажетті ағаш бұйымдарын, жиһаз элементтерін және әрлеу материалдарын шығарады. Сала екі негізгі бағыттан тұрады: ағаш өңдеу өнеркәсібі және құрылыс материалдары өндірісі.</p>
+
+                            <h4>Ағаш өңдеу өнеркәсібі</h4>
+                            <p>Ағаш өңдеу саласы көбіне орман ресурстарына бай өңірлерде шоғырланған. Қазақстанда орман қоры негізінен Шығыс Қазақстан, Солтүстік Қазақстан және Жетісу өңірлерінде орналасқан. Соның ішінде Шығыс Қазақстан облысы – ағаш өңдеудің негізгі орталығы. Мұнда жиһаз, фанера, ағаш тақтай және құрылысқа арналған ағаш өнімдерін өндіретін GreenWood KZ, Kazzink-Ply сияқты кәсіпорындар жұмыс істейді.</p>
+
+                            <p>Ағаш өңдеу өнеркәсібі логистика мен тұтынушы нарығына да бейімделген. Мысалы, Астана мен Алматы қалаларында ағаш өңдеумен айналысатын шағын және орта кәсіпорындар негізінен ішкі нарықты қамтамасыз етуге бағытталған. Ағаш бұйымдары құрылысқа, жиһаз өндірісіне және ішкі әрлеу жұмыстарына кеңінен қолданылады.</p>
+
+                            <h4>Құрылыс материалдары өнеркәсібі</h4>
+                            <p>Құрылыс материалдарын өндіру – елдегі урбанизация, тұрғын үй құрылысы және инфрақұрылымдық жобалардың өсуімен тығыз байланысты. Бұл салада цемент, гипс, құрғақ қоспалар, қабырға блоктары, панельдер, тас және кірпіш өнімдері өндіріледі.</p>
+
+                            <p>Цемент өндірісінің негізгі орталықтары — Ақмола, Шымкент, Павлодар және Маңғыстау облыстары. «Көкшетау Цемент» зауыты Ақмола аймағын цементпен қамтамасыз етсе, Шымкент пен Маңғыстауда орналасқан зауыттар республиканың оңтүстігі мен батысын қамтиды.</p>
+
+                            <p>Гипс пен гипсокартон өндірісі Жамбыл облысында дамыған. Мұнда табиғи гипс кен орындары негізінде «Қаратау Гипс» сияқты кәсіпорындар жұмыс істейді. Бұл өнімдер тұрғын үй және коммерциялық ғимараттардың ішкі әрлеуінде кеңінен қолданылады.</p>
+
+                            <p>Қабырға блоктары мен панельдерді шығару негізінен Қарағанды, Алматы және Астана қалаларында жүзеге асады. Бұл қалаларда тұрғын үй құрылысы белсенді жүріп жатқандықтан, құрылыс материалдарына деген сұраныс жоғары. «ЕвроПанель.KZ» және басқа да зауыттар көпқабатты үйлерге арналған құрылымдық панельдер, СИП-панельдер және жылу сақтайтын материалдар шығарады.</p>
+
+                            <h4>Саланы дамыту факторлары</h4>
+                            <p>Аталған өнеркәсіп түрінің дамуына әсер ететін негізгі факторлар — шикізат қорының болуы, көліктік қолжетімділік, тұтынушы нарығының тығыздығы, энергия мен су ресурстарының қолжетімділігі және еңбек ресурстары. Сонымен қатар, мемлекеттік құрылыс бағдарламалары мен инвестициялық жобалар сұранысты тұрақты ұстап тұруға ықпал етеді.</p>
+
+                            <p>Құрылыс материалдары мен ағаш өңдеу өнімдері ел ішінде ғана емес, жақын шетел нарықтарына да экспортталады. Бұл салада өндірісті экологиялық талаптарға сай жүргізу, қалдықсыз технологияларды енгізу және қайта өңдеуді дамыту өзекті болып отыр.</p>
+
+                            <p>Ағаш өңдеу және құрылыс материалдары өнеркәсібі – Қазақстан экономикасының құрылыс, тұрғын үй және шағын бизнес секторларын қамтамасыз ететін тірек салалардың бірі. Ол табиғи ресурстарға сүйене отырып, өңірлік даму мен урбанизация үдерістеріне серпін береді. Болашақта бұл саланы цифрландыру, автоматтандыру және жасыл технологиялармен байланыстыру арқылы оның тиімділігін арттыруға болады.</p>
+
+                            <div class="text-end mt-4">
+                                <a href="course-section-1.html"><button class="btn btn-primary">Артқа</button></a>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab2" role="tabpanel">
+                            <h3>Практикалық тапсырмалар</h3>
+
+                            <p><b>1-тапсырма. Ағаш өңдеу кәсіпорындарының орналасқан жерін анықтау.</b> Осы тапсырмада сізге әрбір кәсіпорынның дұрыс орналасқан жерін таңдау қажет.</p>
+                            
+                            <form id="companyForm" class="mt-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <h5>1. «GreenWood KZ» ЖШС</h5>
+                                            <select class="form-select" id="company1">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Шығыс Қазақстан">Шығыс Қазақстан</option>
+                                                <option value="Алматы">Алматы</option>
+                                                <option value="Астана">Астана</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>2. «Kazzink-Ply» АҚ</h5>
+                                            <select class="form-select" id="company2">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Шығыс Қазақстан">Шығыс Қазақстан</option>
+                                                <option value="Алматы">Алматы</option>
+                                                <option value="Астана">Астана</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>3. «Қаратау Гипс» ЖШС</h5>
+                                            <select class="form-select" id="company3">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Жамбыл">Жамбыл</option>
+                                                <option value="Алматы">Алматы</option>
+                                                <option value="Астана">Астана</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>4. «ЕвроПанель.KZ» АҚ</h5>
+                                            <select class="form-select" id="company4">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Алматы">Алматы</option>
+                                                <option value="Астана">Астана</option>
+                                                <option value="Қарағанды">Қарағанды</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <h5>5. «Көкшетау Цемент» ЖШС</h5>
+                                            <select class="form-select" id="company5">
+                                                <option selected disabled>Таңдау</option>
+                                                <option value="Ақмола">Ақмола</option>
+                                                <option value="Алматы">Алматы</option>
+                                                <option value="Астана">Астана</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="button" class="btn btn-primary" onclick="checkCompanyLocations()">Тапсырманы аяқтау</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div id="companyResult" class="mt-4"></div>
+
+                            <p><b>2-тапсырма. Ағаш өңдеу кәсіпорындарының орналасқан жерін картада көрсету.</b></p>
+
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div id="map" style="height: 500px; width: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <p><b>3-тапсырма. Төмендегі мәтінді оқып, бос орындарға тиісті сөздерді қойыңыз.</b></p>
+
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <p>Ағаш өңдеу өнеркәсібі екіге бөлінеді: 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank1" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank2" placeholder="Жауап"> 
+                                        өндірісі. Ағаш өңдеу өнеркәсібі негізінен 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank3" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank4" placeholder="Жауап"> 
+                                        өңірлерінде дамыған, ал құрылыс материалдары өндірісі 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank5" placeholder="Жауап">, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank6" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank7" placeholder="Жауап"> 
+                                        облыстарында шоғырланған.
+                                    </p>
+                                    <p>Ағаш өңдеу өнеркәсібінің дамуына әсер ететін негізгі факторлар: 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank8" placeholder="Жауап">, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank9" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank10" placeholder="Жауап">.
+                                    </p>
+                                    <p>Ағаш өңдеу өнімдері 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank11" placeholder="Жауап">, 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank12" placeholder="Жауап"> 
+                                        және 
+                                        <input type="text" class="form-control d-inline-block" style="width: 150px;" id="blank13" placeholder="Жауап"> 
+                                        салаларында кеңінен қолданылады.
+                                    </p>
+
+                                    <div class="text-center mt-4">
+                                        <button type="button" class="btn btn-primary" onclick="checkBlanks()">Жауаптарды тексеру</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="blanksResult" class="mt-4"></div>
+
+                            <div class="text-end mt-4">
+                                <a href="course-section-1.html"><button class="btn btn-primary">Артқа</button></a>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab3" role="tabpanel">
+                            <h3>Тақырыптық тест</h3>
+                            
+                            <form id="testForm">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">1. Ағаш өңдеу өнеркәсібінің шикізаты не болып табылады?</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1" value="a">
+                                            <label class="form-check-label">А) Мұнай</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1" value="b">
+                                            <label class="form-check-label">Б) Құм</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1" value="c">
+                                            <label class="form-check-label">В) Орман ағашы</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1" value="d">
+                                            <label class="form-check-label">Г) Тас көмір</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">2. Қазақстанда ағаш өңдеу өнеркәсібі жақсы дамыған өңір:</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2" value="a">
+                                            <label class="form-check-label">А) Атырау облысы</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2" value="b">
+                                            <label class="form-check-label">Б) Ақтөбе облысы</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2" value="c">
+                                            <label class="form-check-label">В) Шығыс Қазақстан облысы</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2" value="d">
+                                            <label class="form-check-label">Г) Қызылорда облысы</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">3. Құрылыс материалдарын шығаратын ірі кәсіпорын қай қалада орналасқан?</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3" value="a">
+                                            <label class="form-check-label">А) Петропавл</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3" value="b">
+                                            <label class="form-check-label">Б) Семей</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3" value="c">
+                                            <label class="form-check-label">В) Ақтау</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3" value="d">
+                                            <label class="form-check-label">Г) Жезқазған</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">4. Цемент өндірісі үшін басты шикізат:</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q4" value="a">
+                                            <label class="form-check-label">А) Әктас</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q4" value="b">
+                                            <label class="form-check-label">Б) Тас көмір</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q4" value="c">
+                                            <label class="form-check-label">В) Құм</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q4" value="d">
+                                            <label class="form-check-label">Г) Боксит</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">5. Құрылыс материалдарына жатпайтын өнім:</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q5" value="a">
+                                            <label class="form-check-label">А) Цемент</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q5" value="b">
+                                            <label class="form-check-label">Б) Кірпіш</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q5" value="c">
+                                            <label class="form-check-label">В) Қант</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q5" value="d">
+                                            <label class="form-check-label">Г) Құрылыс әгі</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">6. "Семей цемент зауыты" шығаратын өнім:</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q6" value="a">
+                                            <label class="form-check-label">А) Ағаш тақтай</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q6" value="b">
+                                            <label class="form-check-label">Б) Цемент</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q6" value="c">
+                                            <label class="form-check-label">В) Металл құбыр</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q6" value="d">
+                                            <label class="form-check-label">Г) Пластмасса</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">7. Ағаш өңдеу өнімдеріне не жатады?</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q7" value="a">
+                                            <label class="form-check-label">А) Цемент, кірпіш</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q7" value="b">
+                                            <label class="form-check-label">Б) Металл, болат</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q7" value="c">
+                                            <label class="form-check-label">В) Фанера, тақтай, ДСП</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q7" value="d">
+                                            <label class="form-check-label">Г) Полимер, шыны</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">8. Кірпіш зауыттары жиі орналасқан өңір:</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q8" value="a">
+                                            <label class="form-check-label">А) Оңтүстік Қазақстан (Түркістан обл.)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q8" value="b">
+                                            <label class="form-check-label">Б) Маңғыстау облысы</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q8" value="c">
+                                            <label class="form-check-label">В) Солтүстік Қазақстан</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q8" value="d">
+                                            <label class="form-check-label">Г) Ақмола облысы</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">9. "Құрылыс материалдары" өнеркәсібі қай салаға жатады?</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q9" value="a">
+                                            <label class="form-check-label">А) Ауыл шаруашылығы</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q9" value="b">
+                                            <label class="form-check-label">Б) Жеңіл өнеркәсіп</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q9" value="c">
+                                            <label class="form-check-label">В) Өндірістік өнеркәсіп</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q9" value="d">
+                                            <label class="form-check-label">Г) Тау-кен өндірісі</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">10. Ағаш өңдеу зауыттары неге орманды өңірлерде орналасады?</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q10" value="a">
+                                            <label class="form-check-label">А) Жұмыс күші арзан</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q10" value="b">
+                                            <label class="form-check-label">Б) Климат ыңғайлы</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q10" value="c">
+                                            <label class="form-check-label">В) Шикізатқа жақын</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q10" value="d">
+                                            <label class="form-check-label">Г) Қалаға жақын болу үшін</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="checkAnswers()">Жауаптарды тексеру</button>
+                            </form>
+
+                            <div id="results" class="mt-4" style="display: none;">
+                                <h4>Нәтижелер:</h4>
+                                <div id="score"></div>
+                                <div id="answers"></div>
+                            </div>
+
+                            <div class="text-end mt-4">
+                                <a href="course-section-1.html"><button class="btn btn-primary">Артқа</button></a>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tab4" role="tabpanel">
+                            <h3>Картамен практикалық жұмыс</h3>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div id="sidebar" style="width: 23%; height: 600px; float: left; overflow-y: auto; border-right: 2px solid #ccc; background-color: #f9f9f9; padding: 10px;">
+                                        <h2>Объекты</h2>
+                                        <div class="category" data-group="woodProcessing">Ағаш өңдеу өнеркәсібі</div>
+                                        <ul class="factory-list" data-group="woodProcessing">
+                                            <li class="subcategory" data-group="northKazakhstan">Солтүстік Қазақстан облысы</li>
+                                            <ul class="subcategory-list" data-group="northKazakhstan" style="display: none;">
+                                                <li data-group="northKazakhstan" data-index="0">Петропавл ағаш өңдеу зауыты</li>
+                                                <li data-group="northKazakhstan" data-index="1">Тайынша ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="eastKazakhstan">Шығыс Қазақстан облысы</li>
+                                            <ul class="subcategory-list" data-group="eastKazakhstan" style="display: none;">
+                                                <li data-group="eastKazakhstan" data-index="0">Өскемен ағаш өңдеу зауыты</li>
+                                                <li data-group="eastKazakhstan" data-index="1">Риддер ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="kostanay">Қостанай облысы</li>
+                                            <ul class="subcategory-list" data-group="kostanay" style="display: none;">
+                                                <li data-group="kostanay" data-index="0">Қостанай ағаш өңдеу зауыты</li>
+                                                <li data-group="kostanay" data-index="1">Лисаковск ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="akmola">Ақмола облысы</li>
+                                            <ul class="subcategory-list" data-group="akmola" style="display: none;">
+                                                <li data-group="akmola" data-index="0">Көкшетау ағаш өңдеу зауыты</li>
+                                                <li data-group="akmola" data-index="1">Степногорск ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="almaty">Алматы қаласы және Алматы облысы</li>
+                                            <ul class="subcategory-list" data-group="almaty" style="display: none;">
+                                                <li data-group="almaty" data-index="0">Алматы ағаш өңдеу зауыты</li>
+                                                <li data-group="almaty" data-index="1">Талғар ағаш өңдеу зауыты</li>
+                                                <li data-group="almaty" data-index="2">Қаскелең ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="karaganda">Қарағанды облысы</li>
+                                            <ul class="subcategory-list" data-group="karaganda" style="display: none;">
+                                                <li data-group="karaganda" data-index="0">Қарағанды ағаш өңдеу зауыты</li>
+                                                <li data-group="karaganda" data-index="1">Теміртау ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="turkistan">Түркістан облысы</li>
+                                            <ul class="subcategory-list" data-group="turkistan" style="display: none;">
+                                                <li data-group="turkistan" data-index="0">Шымкент ағаш өңдеу зауыты</li>
+                                                <li data-group="turkistan" data-index="1">Түркістан ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="zhambyl">Жамбыл облысы</li>
+                                            <ul class="subcategory-list" data-group="zhambyl" style="display: none;">
+                                                <li data-group="zhambyl" data-index="0">Тараз ағаш өңдеу зауыты</li>
+                                                <li data-group="zhambyl" data-index="1">Шу ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="pavlodar">Павлодар облысы</li>
+                                            <ul class="subcategory-list" data-group="pavlodar" style="display: none;">
+                                                <li data-group="pavlodar" data-index="0">Павлодар ағаш өңдеу зауыты</li>
+                                                <li data-group="pavlodar" data-index="1">Екібастұз ағаш өңдеу зауыты</li>
+                                            </ul>
+                                            <li class="subcategory" data-group="westKazakhstan">Батыс Қазақстан облысы</li>
+                                            <ul class="subcategory-list" data-group="westKazakhstan" style="display: none;">
+                                                <li data-group="westKazakhstan" data-index="0">Орал ағаш өңдеу зауыты</li>
+                                                <li data-group="westKazakhstan" data-index="1">Ақсай ағаш өңдеу зауыты</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div id="map2" style="height: 600px; width: 75%; float: right;"></div>
+                                </div>
+                            </div>
+                            <style>
+                                .category {
+                                    cursor: pointer;
+                                    margin: 5px 0;
+                                    padding: 10px;
+                                    background-color: #007bff;
+                                    color: white;
+                                    font-weight: bold;
+                                    border-radius: 5px;
+                                    text-align: center;
+                                    font-size: 14px;
+                                }
+                                .category:hover {
+                                    background-color: #0056b3;
+                                }
+                                .factory-list {
+                                    list-style-type: none;
+                                    padding: 0;
+                                    margin: 0;
+                                    display: none;
+                                    background-color: #f1f1f1;
+                                    border-radius: 5px;
+                                    border: 1px solid #ccc;
+                                }
+                                .factory-list li {
+                                    cursor: pointer;
+                                    padding: 8px 10px;
+                                    border-bottom: 1px solid #ddd;
+                                }
+                                .factory-list li:last-child {
+                                    border-bottom: none;
+                                }
+                                .factory-list li:hover {
+                                    background-color: #e9e9e9;
+                                }
+                                .subcategory {
+                                    font-weight: bold;
+                                    background-color: #e0e0e0;
+                                    margin-top: 10px;
+                                    padding: 8px 10px;
+                                    border-top: 1px solid #ccc;
+                                    border-bottom: 1px solid #ccc;
+                                }
+                            </style>
+                            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                            <script>
+                                // Инициализация карты
+                                const map2 = L.map('map2').setView([48.0196, 66.9237], 5);
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    Zoom: 18,
+                                    attribution: '© OpenStreetMap contributors'
+                                }).addTo(map2);
+                                const locations = {
+                                    northKazakhstan: [
+                                        { name: "Петропавл ағаш өңдеу зауыты", coords: [54.872, 69.143] },
+                                        { name: "Тайынша ағаш өңдеу зауыты", coords: [53.847, 69.760] }
+                                    ],
+                                    eastKazakhstan: [
+                                        { name: "Өскемен ағаш өңдеу зауыты", coords: [49.948, 82.628] },
+                                        { name: "Риддер ағаш өңдеу зауыты", coords: [50.344, 83.512] }
+                                    ],
+                                    kostanay: [
+                                        { name: "Қостанай ағаш өңдеу зауыты", coords: [53.214, 63.624] },
+                                        { name: "Лисаковск ағаш өңдеу зауыты", coords: [52.547, 62.493] }
+                                    ],
+                                    akmola: [
+                                        { name: "Көкшетау ағаш өңдеу зауыты", coords: [53.283, 69.383] },
+                                        { name: "Степногорск ағаш өңдеу зауыты", coords: [52.350, 71.883] }
+                                    ],
+                                    almaty: [
+                                        { name: "Алматы ағаш өңдеу зауыты", coords: [43.222, 76.851] },
+                                        { name: "Талғар ағаш өңдеу зауыты", coords: [43.302, 77.234] },
+                                        { name: "Қаскелең ағаш өңдеу зауыты", coords: [43.200, 76.633] }
+                                    ],
+                                    karaganda: [
+                                        { name: "Қарағанды ағаш өңдеу зауыты", coords: [49.803, 73.102] },
+                                        { name: "Теміртау ағаш өңдеу зауыты", coords: [50.054, 72.964] }
+                                    ],
+                                    turkistan: [
+                                        { name: "Шымкент ағаш өңдеу зауыты", coords: [42.300, 69.600] },
+                                        { name: "Түркістан ағаш өңдеу зауыты", coords: [43.297, 68.251] }
+                                    ],
+                                    zhambyl: [
+                                        { name: "Тараз ағаш өңдеу зауыты", coords: [42.900, 71.366] },
+                                        { name: "Шу ағаш өңдеу зауыты", coords: [43.598, 73.761] }
+                                    ],
+                                    pavlodar: [
+                                        { name: "Павлодар ағаш өңдеу зауыты", coords: [52.297, 76.957] },
+                                        { name: "Екібастұз ағаш өңдеу зауыты", coords: [51.729, 75.326] }
+                                    ],
+                                    westKazakhstan: [
+                                        { name: "Орал ағаш өңдеу зауыты", coords: [51.227, 51.386] },
+                                        { name: "Ақсай ағаш өңдеу зауыты", coords: [51.167, 52.997] }
+                                    ]
+                                };
+                                const markers = {};
+                                Object.keys(locations).forEach(group => {
+                                    markers[group] = [];
+                                    locations[group].forEach(location => {
+                                        const marker = L.marker(location.coords)
+                                            .bindPopup(`<strong>${location.name}</strong>`);
+                                        markers[group].push(marker);
+                                    });
+                                });
+                                document.querySelectorAll('.category').forEach(category => {
+                                    category.addEventListener('click', () => {
+                                        const group = category.dataset.group;
+                                        const list = document.querySelector(`.factory-list[data-group="${group}"]`);
+                                        document.querySelectorAll('.factory-list').forEach(l => {
+                                            if (l !== list) {
+                                                l.style.display = 'none';
+                                            }
+                                        });
+                                        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+                                        if (list.style.display === 'block') {
+                                            markers[group].forEach(m => m.addTo(map2));
+                                        }
+                                        map2.setView([48.0196, 66.9237], 5, { animate: true, duration: 1.5 });
+                                    });
+                                });
+                                document.querySelectorAll('.subcategory').forEach(subcategory => {
+                                    subcategory.addEventListener('click', event => {
+                                        event.stopPropagation();
+                                        const group = event.target.dataset.group;
+                                        const subcategoryList = document.querySelector(`.subcategory-list[data-group="${group}"]`);
+                                        document.querySelectorAll('.subcategory-list').forEach(list => {
+                                            if (list !== subcategoryList) {
+                                                list.style.display = 'none';
+                                            }
+                                        });
+                                        subcategoryList.style.display = subcategoryList.style.display === 'block' ? 'none' : 'block';
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+                                        if (subcategoryList.style.display === 'block') {
+                                            markers[group].forEach(m => m.addTo(map2));
+                                        }
+                                        map2.setView([48.0196, 66.9237], 5, { animate: true, duration: 1.5 });
+                                    });
+                                });
+                                document.querySelectorAll('.subcategory-list li').forEach(item => {
+                                    item.addEventListener('click', event => {
+                                        event.stopPropagation();
+                                        const group = event.target.dataset.group;
+                                        const index = event.target.dataset.index;
+                                        Object.keys(markers).forEach(g => {
+                                            markers[g].forEach(m => map2.removeLayer(m));
+                                        });
+                                        if (group && index !== undefined) {
+                                            const marker = markers[group][index];
+                                            marker.addTo(map2).openPopup();
+                                            map2.setView(marker.getLatLng(), 10, { animate: true, duration: 1.5 });
+                                        }
+                                    });
+                                });
+                            </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color: #1e1d3a; color: white; padding: 40px 20px; text-align: center;">
+        <div style="max-width: 800px; margin: auto;">
+            <h2 style="font-weight: bold;">GeoMapEd</h2>
+            <p style="margin-top: 0;">Білім беру бағдарламасы</p>
+
+            <p style="margin: 30px 0 10px;">Біздің жаңартуларымызға жазылыңыз</p>
+
+            <form style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+                <input type="email" placeholder="Сіздің электрондық поштаңыз"
+                       style="padding: 10px 20px; border: none; border-radius: 25px; min-width: 250px; outline: none;">
+                <button type="submit"
+                        style="padding: 10px 30px; background-color: #45d0d1; color: white; border: none; border-radius: 25px; cursor: pointer;">
+                    Жазылу
+                </button>
+            </form>
+
+            <div style="font-size: 14px; color: #aaa; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="#" style="color: #aaa; text-decoration: none;">Курстар</a>
+                <span>|</span>
+                <a href="#" style="color: #aaa; text-decoration: none;">Құпиялық саясаты</a>
+                <span>|</span>
+                <a href="#" style="color: #aaa; text-decoration: none;">Пайдалану шарттары</a>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 13px; color: #aaa;">© 2025 GeoMapEd. Барлық құқықтар қорғалған</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script>
+        function checkAnswers() {
+            const correctAnswers = {
+                q1: 'c',
+                q2: 'c',
+                q3: 'b',
+                q4: 'a',
+                q5: 'c',
+                q6: 'b',
+                q7: 'c',
+                q8: 'a',
+                q9: 'c',
+                q10: 'c'
+            };
+
+            let score = 0;
+            let results = '';
+
+            for (let question in correctAnswers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                const questionNumber = question.replace('q', '');
+                
+                if (selected) {
+                    if (selected.value === correctAnswers[question]) {
+                        score++;
+                        results += `<p>Сұрақ ${questionNumber}: ✅ Дұрыс</p>`;
+                    } else {
+                        results += `<p>Сұрақ ${questionNumber}: ❌ Қате. Дұрыс жауап: ${getAnswerText(question, correctAnswers[question])}</p>`;
+                    }
+                } else {
+                    results += `<p>Сұрақ ${questionNumber}: ❌ Жауап берілмеген. Дұрыс жауап: ${getAnswerText(question, correctAnswers[question])}</p>`;
+                }
+            }
+
+            document.getElementById('score').innerHTML = `<h5>Жалпы балл: ${score}/10</h5>`;
+            document.getElementById('answers').innerHTML = results;
+            document.getElementById('results').style.display = 'block';
+        }
+
+        function getAnswerText(question, answer) {
+            const answers = {
+                q1: {
+                    'c': 'Орман ағашы'
+                },
+                q2: {
+                    'c': 'Шығыс Қазақстан облысы'
+                },
+                q3: {
+                    'b': 'Семей'
+                },
+                q4: {
+                    'a': 'Әктас'
+                },
+                q5: {
+                    'c': 'Қант'
+                },
+                q6: {
+                    'b': 'Цемент'
+                },
+                q7: {
+                    'c': 'Фанера, тақтай, ДСП'
+                },
+                q8: {
+                    'a': 'Оңтүстік Қазақстан (Түркістан обл.)'
+                },
+                q9: {
+                    'c': 'Өндірістік өнеркәсіп'
+                },
+                q10: {
+                    'c': 'Шикізатқа жақын'
+                }
+            };
+            return answers[question][answer];
+        }
+
+        // Correct answers for company locations
+        const correctCompanyLocations = {
+            company1: "Шығыс Қазақстан",
+            company2: "Шығыс Қазақстан",
+            company3: "Жамбыл",
+            company4: "Алматы",
+            company5: "Ақмола"
+        };
+
+        // Correct answers for blanks
+        const correctBlanks = {
+            blank1: "ағаш өңдеу",
+            blank2: "құрылыс материалдары",
+            blank3: "Шығыс Қазақстан",
+            blank4: "Солтүстік Қазақстан",
+            blank5: "Ақмола",
+            blank6: "Жамбыл",
+            blank7: "Қарағанды",
+            blank8: "орман ресурстары",
+            blank9: "құрылыс саласы",
+            blank10: "технологиялар",
+            blank11: "құрылыс",
+            blank12: "жиһаз",
+            blank13: "ішкі әрлеу"
+        };
+
+        // Function to check company locations
+        function checkCompanyLocations() {
+            let score = 0;
+            let total = Object.keys(correctCompanyLocations).length;
+            let resultHtml = '<div class="alert alert-info">';
+
+            for (let company in correctCompanyLocations) {
+                const selectedValue = document.getElementById(company).value;
+                if (selectedValue === correctCompanyLocations[company]) {
+                    score++;
+                    resultHtml += `<p class="text-success">✓ ${company.replace('company', 'Кәсіпорын ')}: Дұрыс!</p>`;
+                } else {
+                    resultHtml += `<p class="text-danger">✗ ${company.replace('company', 'Кәсіпорын ')}: Қате. Дұрыс жауап: ${correctCompanyLocations[company]}</p>`;
+                }
+            }
+
+            resultHtml += `<p class="mt-3"><b>Нәтиже: ${score}/${total}</b></p>`;
+            resultHtml += '</div>';
+            document.getElementById('companyResult').innerHTML = resultHtml;
+        }
+
+        // Function to check blanks
+        function checkBlanks() {
+            let score = 0;
+            let total = Object.keys(correctBlanks).length;
+            let resultHtml = '<div class="alert alert-info">';
+
+            for (let blank in correctBlanks) {
+                const userAnswer = document.getElementById(blank).value.toLowerCase().trim();
+                if (userAnswer === correctBlanks[blank].toLowerCase()) {
+                    score++;
+                    resultHtml += `<p class="text-success">✓ ${blank.replace('blank', 'Бос орын ')}: Дұрыс!</p>`;
+                } else {
+                    resultHtml += `<p class="text-danger">✗ ${blank.replace('blank', 'Бос орын ')}: Қате. Дұрыс жауап: ${correctBlanks[blank]}</p>`;
+                }
+            }
+
+            resultHtml += `<p class="mt-3"><b>Нәтиже: ${score}/${total}</b></p>`;
+            resultHtml += '</div>';
+            document.getElementById('blanksResult').innerHTML = resultHtml;
+        }
+
+        // Initialize map for task 2
+        document.addEventListener("DOMContentLoaded", function() {
+            const map = L.map('map').setView([48.0, 67.0], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const locations = [
+                { name: 'Шығыс Қазақстан облысы', lat: 49.9483, lng: 82.6289 },
+                { name: 'Солтүстік Қазақстан облысы', lat: 54.8833, lng: 69.1667 },
+                { name: 'Ақмола облысы', lat: 51.1667, lng: 71.4167 },
+                { name: 'Жамбыл облысы', lat: 42.9000, lng: 71.3667 },
+                { name: 'Қарағанды облысы', lat: 49.8333, lng: 73.1667 },
+                { name: 'Алматы қаласы', lat: 43.2220, lng: 76.8512 },
+                { name: 'Павлодар облысы', lat: 52.2833, lng: 76.9667 }
+            ];
+
+            // Create custom icons
+            const greenIcon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            const redIcon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            let correctMarkers = [];
+            let incorrectMarker = null;
+
+            // Add click handler to map
+            map.on('click', function(e) {
+                const clickedLat = e.latlng.lat;
+                const clickedLng = e.latlng.lng;
+                
+                if (incorrectMarker) {
+                    map.removeLayer(incorrectMarker);
+                    incorrectMarker = null;
+                }
+
+                let found = false;
+                for (let location of locations) {
+                    const distance = map.distance(
+                        [clickedLat, clickedLng],
+                        [location.lat, location.lng]
+                    );
+
+                    if (distance < 100000) { // 100km radius
+                        found = true;
+                        const marker = L.marker([location.lat, location.lng], {icon: greenIcon})
+                            .addTo(map)
+                            .bindPopup(location.name);
+                        correctMarkers.push(marker);
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    incorrectMarker = L.marker([clickedLat, clickedLng], {icon: redIcon})
+                        .addTo(map)
+                        .bindPopup('Қате орналасу');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
